@@ -1,9 +1,8 @@
 package day1010.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
+
 public class BoutiqueBean {
+    
         private int id;
 
         private String title;
