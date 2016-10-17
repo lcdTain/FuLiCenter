@@ -1,10 +1,10 @@
-package day1010.fulicenter;
+package day1010.fulicenter.activity;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import day1010.fulicenter.R;
 import day1010.fulicenter.utils.MFGT;
 
 public class SplashActivity extends AppCompatActivity {

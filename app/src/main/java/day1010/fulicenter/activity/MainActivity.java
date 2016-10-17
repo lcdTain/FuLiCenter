@@ -1,4 +1,4 @@
-package day1010.fulicenter;
+package day1010.fulicenter.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import day1010.fulicenter.R;
 import day1010.fulicenter.utils.L;
 
 public class MainActivity extends AppCompatActivity {

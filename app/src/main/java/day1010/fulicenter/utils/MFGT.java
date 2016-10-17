@@ -3,7 +3,7 @@ package day1010.fulicenter.utils;
 import android.app.Activity;
 import android.content.Intent;
 
-import day1010.fulicenter.MainActivity;
+import day1010.fulicenter.activity.MainActivity;
 import day1010.fulicenter.R;
 
 public class MFGT {
