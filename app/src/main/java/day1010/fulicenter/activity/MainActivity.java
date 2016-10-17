@@ -1,6 +1,7 @@
 package day1010.fulicenter.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import day1010.fulicenter.R;
+import day1010.fulicenter.fragment.NewGoodsFragment;
 import day1010.fulicenter.utils.L;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
     int index;
     RadioButton[] rbs;
+    NewGoodsFragment newGoodsFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         L.i("main", "onCreate");
         initView();
+        initFragment();
+    }
+
+    private void initFragment() {
+        newGoodsFragment = new NewGoodsFragment();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment,newGoodsFragment)
+                .show(newGoodsFragment)
+                .commit();
     }
 
     private void initView() {

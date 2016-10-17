@@ -38,9 +38,8 @@ public class NewGoodsBean {
 
         private String colorUrl;
 
-        private int addTime;
+        private String addTime;
 
-        private boolean promote;
 
         public void setId(int id){
             this.id = id;
@@ -144,17 +143,11 @@ public class NewGoodsBean {
         public String getColorUrl(){
             return this.colorUrl;
         }
-        public void setAddTime(int addTime){
+        public void setAddTime(String addTime){
             this.addTime = addTime;
         }
-        public int getAddTime(){
+        public String getAddTime(){
             return this.addTime;
-        }
-        public void setPromote(boolean promote){
-            this.promote = promote;
-        }
-        public boolean getPromote(){
-            return this.promote;
         }
 
     public NewGoodsBean() {
@@ -181,7 +174,6 @@ public class NewGoodsBean {
                 ", colorCode='" + colorCode + '\'' +
                 ", colorUrl='" + colorUrl + '\'' +
                 ", addTime=" + addTime +
-                ", promote=" + promote +
                 '}';
     }
 }

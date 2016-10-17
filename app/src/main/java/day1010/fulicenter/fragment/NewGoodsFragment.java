@@ -21,6 +21,8 @@ import day1010.fulicenter.R;
 import day1010.fulicenter.activity.MainActivity;
 import day1010.fulicenter.bean.NewGoodsBean;
 import day1010.fulicenter.net.NetDao;
+import day1010.fulicenter.utils.ConvertUtils;
+import day1010.fulicenter.utils.L;
 import day1010.fulicenter.utils.OkHttpUtils;
 
 /**
@@ -50,17 +52,23 @@ public class NewGoodsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_new_goods, container, false);
+        ButterKnife.bind(this, view);
+        context = (MainActivity) getContext();
+        mList = new ArrayList<>();
+        mAdapter = new NewGoodsAdapter(context,mList);
         initView();
         initData();
-        ButterKnife.bind(this, view);
         return view;
     }
 
     private void initData() {
-        NetDao.downloadNewGoods(context, mPageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean>() {
+        NetDao.downloadNewGoods(context, mPageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean[]>() {
             @Override
-            public void onSuccess(NewGoodsBean result) {
-
+            public void onSuccess(NewGoodsBean[] result) {
+                if (result != null && result.length > 0){
+                    ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
+                    mAdapter.initData(list);
+                }
             }
 
             @Override
@@ -73,10 +81,7 @@ public class NewGoodsFragment extends Fragment {
     }
 
     private void initView() {
-        context = (MainActivity) getContext();
-        mList = new ArrayList<>();
-        mAdapter = new NewGoodsAdapter(context,mList);
-
+        L.i("main","initView()");
         sl.setColorSchemeColors(
                 getResources().getColor(R.color.google_red),
                 getResources().getColor(R.color.google_yellow),

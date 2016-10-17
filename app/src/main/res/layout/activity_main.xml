@@ -88,14 +88,13 @@
             android:textColor="@color/main_botton_text_color" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/aboveMenu"
+    <RelativeLayout
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomMenu"
-        android:orientation="vertical">
-
-    </LinearLayout>
+        >
+    </RelativeLayout>
 
 
 </RelativeLayout>

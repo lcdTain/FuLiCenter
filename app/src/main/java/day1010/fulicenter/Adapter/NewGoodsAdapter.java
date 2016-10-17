@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -28,6 +29,7 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
     public NewGoodsAdapter(Context context, List<NewGoodsBean> mList) {
         this.context = context;
         this.mList = mList;
+        mList = new ArrayList<>();
     }
 
     public void setTvFooterText(String tvFooterText) {
@@ -72,6 +74,12 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
         } else {
             return I.TYPE_ITEM;
         }
+    }
+
+    public void initData(ArrayList<NewGoodsBean> list) {
+        mList.clear();
+        mList.addAll(list);
+        notifyDataSetChanged();
     }
 
 
