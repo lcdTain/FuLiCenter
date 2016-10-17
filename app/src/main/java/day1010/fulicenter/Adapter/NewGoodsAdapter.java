@@ -14,6 +14,7 @@ import butterknife.ButterKnife;
 import day1010.fulicenter.I;
 import day1010.fulicenter.R;
 import day1010.fulicenter.bean.NewGoodsBean;
+import day1010.fulicenter.utils.ImageLoader;
 
 /**
  * Created by Administrator on 2016/10/17.
@@ -54,6 +55,7 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
             NewGoodsBean newGoodsBean = mList.get(position);
             goodsViewHolder.tvGoodsName.setText(newGoodsBean.getGoodsName());
             goodsViewHolder.tvGoodsPrince.setText(newGoodsBean.getCurrencyPrice());
+            ImageLoader.downloadImg(context,goodsViewHolder.ivGoodsPicture, newGoodsBean.getGoodsThumb());
         }
 
     }
