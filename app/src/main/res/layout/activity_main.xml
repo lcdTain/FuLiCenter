@@ -3,8 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <RadioGroup
+    <LinearLayout
+        android:id="@+id/bottomMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -52,13 +52,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1">
+
             <TextView
                 android:id="@+id/tvCartCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="10"
                 android:background="@drawable/cart_hint"
+                android:text="10"
                 android:textColor="@color/black2" />
 
             <RadioButton
@@ -85,5 +86,16 @@
             android:gravity="center"
             android:text="我"
             android:textColor="@color/main_botton_text_color" />
-    </RadioGroup>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/aboveMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomMenu"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+
 </RelativeLayout>
