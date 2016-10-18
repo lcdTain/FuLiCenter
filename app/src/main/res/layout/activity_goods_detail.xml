@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/good_detail_title_bg">
+<ImageView
+    android:id="@+id/ivBack"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@mipmap/back_nomal"/>
+        <TextView
+            android:id="@+id/tvGoodsDetail"
+            android:layout_toRightOf="@id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="商品详情"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="8dp"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:id="@+id/ivCartSelected"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/bg_cart_selected" />
+        <TextView
+            android:id="@+id/tvCartText"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:text="3"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:gravity="center"
+            android:textColor="#f00" />
+        <ImageView
+            android:id="@+id/ivCollectIn"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/bg_collect_in"
+            android:paddingRight="10dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"/>
+        <ImageView
+            android:id="@+id/ivShareNor"
+            android:paddingTop="2dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/bg_share_nor"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/two"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/one"
+            android:layout_marginTop="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tvEnglishName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Monbento"
+                android:textSize="15sp"
+                android:textColor="#f0f"
+                android:layout_marginLeft="50dp"/>
+            <TextView
+                android:id="@+id/tvGoodsDetailPrince1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥300"
+                android:textColor="#03dffc"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_below="@id/one"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:id="@+id/tvChinese_Name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="双层分格饭盒 绿色"
+                android:paddingLeft="50dp"
+                android:textSize="15sp"
+                android:textColor="#00f" />
+            <TextView
+                android:id="@+id/tvGoodsDetailPrince2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥293"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="50dp"
+                android:textSize="15sp"
+                android:textColor="#f00" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <day1010.fulicenter.view.SlideAutoLoopView
+            android:id="@+id/salv"
+            android:layout_centerInParent="true"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="50dp"/>
+        <day1010.fulicenter.view.FlowIndicator
+            android:id="@+id/FlowIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/salv"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+        <TextView
+            android:id="@+id/tvGoodsDetails"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/salv"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:textSize="15sp"
+            android:textColor="#000"
+            android:text="PP食品级材质，轻巧、易清洗、了、不易变形，可置于微波炉加热"/>
+
+
+
+
+</LinearLayout>

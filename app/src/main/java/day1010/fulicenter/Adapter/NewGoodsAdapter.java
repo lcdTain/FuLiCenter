@@ -74,7 +74,7 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
             goodsViewHolder.tvGoodsName.setText(newGoodsBean.getGoodsName());
             goodsViewHolder.tvGoodsPrince.setText(newGoodsBean.getCurrencyPrice());
             ImageLoader.downloadImg(context, goodsViewHolder.ivGoodsPicture, newGoodsBean.getGoodsThumb());
-            goodsViewHolder.layoutGoods.setTag(newGoodsBean.getId());
+            goodsViewHolder.layoutGoods.setTag(newGoodsBean.getGoodsId());
         }
 
     }
