@@ -24,12 +24,23 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
     Context context;
     List<NewGoodsBean> mList;
     String tvFooterText;
+    boolean isMore;
+    private int footString;
 
 
     public NewGoodsAdapter(Context context, List<NewGoodsBean> mList) {
         this.context = context;
         this.mList = mList;
         mList = new ArrayList<>();
+    }
+
+    public boolean isMore() {
+        return isMore;
+    }
+
+    public void setMore(boolean more) {
+        isMore = more;
+        notifyDataSetChanged();
     }
 
     public void setTvFooterText(String tvFooterText) {
@@ -51,13 +62,13 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == I.TYPE_FOOTER) {
             FooterViewHolder footerViewHolder = (FooterViewHolder) holder;
-            footerViewHolder.tvFooter.setText(tvFooterText);
+            footerViewHolder.tvFooter.setText(getFootString());
         } else {
             GoodsViewHolder goodsViewHolder = (GoodsViewHolder) holder;
             NewGoodsBean newGoodsBean = mList.get(position);
             goodsViewHolder.tvGoodsName.setText(newGoodsBean.getGoodsName());
             goodsViewHolder.tvGoodsPrince.setText(newGoodsBean.getCurrencyPrice());
-            ImageLoader.downloadImg(context,goodsViewHolder.ivGoodsPicture, newGoodsBean.getGoodsThumb());
+            ImageLoader.downloadImg(context, goodsViewHolder.ivGoodsPicture, newGoodsBean.getGoodsThumb());
         }
 
     }
@@ -80,6 +91,10 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
         mList.clear();
         mList.addAll(list);
         notifyDataSetChanged();
+    }
+
+    public int getFootString() {
+        return isMore?R.string.load_more:R.string.no_more;
     }
 
 

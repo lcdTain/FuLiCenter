@@ -71,6 +71,7 @@ public class NewGoodsFragment extends Fragment {
                 if (result != null && result.length > 0){
                     ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
                     mAdapter.initData(list);
+                    mAdapter.setMore(false);
                 }
             }
 
