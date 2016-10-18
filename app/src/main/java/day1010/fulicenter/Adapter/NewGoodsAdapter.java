@@ -18,8 +18,10 @@ import butterknife.OnClick;
 import day1010.fulicenter.I;
 import day1010.fulicenter.R;
 import day1010.fulicenter.activity.GoodsDetailActivity;
+import day1010.fulicenter.activity.MainActivity;
 import day1010.fulicenter.bean.NewGoodsBean;
 import day1010.fulicenter.utils.ImageLoader;
+import day1010.fulicenter.utils.MFGT;
 
 /**
  * Created by Administrator on 2016/10/17.
@@ -137,6 +139,7 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
         @OnClick(R.id.layout_goods)
         public void onGoodsItemClick() {
             int goodsId = (int) layoutGoods.getTag();
+            MFGT.gotoGoodsDetailsActivity((MainActivity)context,goodsId);
             context.startActivity(new Intent(context, GoodsDetailActivity.class)
                     .putExtra(I.GoodsDetails.KEY_GOODS_ID,goodsId));
 
