@@ -1,27 +1,29 @@
 package day1010.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
 public class MessageBean {
-        private boolean success;
 
-        private String msg;
+    /**
+     * success : true
+     * msg : 添加收藏成功
+     */
 
-        public void setSuccess(boolean success){
-            this.success = success;
-        }
-        public boolean getSuccess(){
-            return this.success;
-        }
-        public void setMsg(String msg){
-            this.msg = msg;
-        }
-        public String getMsg(){
-            return this.msg;
-        }
+    private boolean success;
+    private String msg;
 
-    public MessageBean() {
+    public boolean isSuccess() {
+        return success;
+    }
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     @Override

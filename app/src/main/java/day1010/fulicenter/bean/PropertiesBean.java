@@ -1,77 +1,81 @@
 package day1010.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-import java.util.ArrayList;
-import java.util.List;
-public class PropertiesBean {
-        private int id;
+import java.io.Serializable;
+import java.util.Arrays;
 
-        private int goodsId;
+public class PropertiesBean implements Serializable {
 
-        private int colorId;
+    private int id;
+    private int goodsId;
+    private int colorId;
+    private String colorName;
+    private String colorCode;
+    private String colorImg;
+    private String colorUrl;
+    private AlbumsBean[] albums;
 
-        private String colorName;
+    public int getId() {
+        return id;
+    }
 
-        private String colorCode;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-        private String colorImg;
+    public int getGoodsId() {
+        return goodsId;
+    }
 
-        private String colorUrl;
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
+    }
 
-        private List<String> albums;
+    public int getColorId() {
+        return colorId;
+    }
 
-        public void setId(int id){
-            this.id = id;
-        }
-        public int getId(){
-            return this.id;
-        }
-        public void setGoodsId(int goodsId){
-            this.goodsId = goodsId;
-        }
-        public int getGoodsId(){
-            return this.goodsId;
-        }
-        public void setColorId(int colorId){
-            this.colorId = colorId;
-        }
-        public int getColorId(){
-            return this.colorId;
-        }
-        public void setColorName(String colorName){
-            this.colorName = colorName;
-        }
-        public String getColorName(){
-            return this.colorName;
-        }
-        public void setColorCode(String colorCode){
-            this.colorCode = colorCode;
-        }
-        public String getColorCode(){
-            return this.colorCode;
-        }
-        public void setColorImg(String colorImg){
-            this.colorImg = colorImg;
-        }
-        public String getColorImg(){
-            return this.colorImg;
-        }
-        public void setColorUrl(String colorUrl){
-            this.colorUrl = colorUrl;
-        }
-        public String getColorUrl(){
-            return this.colorUrl;
-        }
-        public void setAlbums(List<String> albums){
-            this.albums = albums;
-        }
-        public List<String> getAlbums(){
-            return this.albums;
-        }
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
+    }
 
-    public PropertiesBean() {
+    public String getColorName() {
+        return colorName;
+    }
+
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
+    }
+
+    public String getColorCode() {
+        return colorCode;
+    }
+
+    public void setColorCode(String colorCode) {
+        this.colorCode = colorCode;
+    }
+
+    public String getColorImg() {
+        return colorImg;
+    }
+
+    public void setColorImg(String colorImg) {
+        this.colorImg = colorImg;
+    }
+
+    public String getColorUrl() {
+        return colorUrl;
+    }
+
+    public void setColorUrl(String colorUrl) {
+        this.colorUrl = colorUrl;
+    }
+
+    public AlbumsBean[] getAlbums() {
+        return albums;
+    }
+
+    public void setAlbums(AlbumsBean[] albums) {
+        this.albums = albums;
     }
 
     @Override
@@ -84,7 +88,7 @@ public class PropertiesBean {
                 ", colorCode='" + colorCode + '\'' +
                 ", colorImg='" + colorImg + '\'' +
                 ", colorUrl='" + colorUrl + '\'' +
-                ", albums=" + albums +
+                ", albums=" + Arrays.toString(albums) +
                 '}';
     }
 }

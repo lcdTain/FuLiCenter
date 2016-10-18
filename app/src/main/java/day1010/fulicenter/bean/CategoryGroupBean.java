@@ -1,43 +1,40 @@
 package day1010.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-public class CategoryGroupBean {
-        private int id;
+import java.io.Serializable;
 
-        private String name;
+public class CategoryGroupBean implements Serializable {
 
-        private String imageUrl;
+    /**
+     * id : 334
+     * name : 配饰
+     * imageUrl : muying/Jewelry.png
+     */
 
-        public void setId(int id){
-            this.id = id;
-        }
-        public int getId(){
-            return this.id;
-        }
-        public void setName(String name){
-            this.name = name;
-        }
-        public String getName(){
-            return this.name;
-        }
-        public void setImageUrl(String imageUrl){
-            this.imageUrl = imageUrl;
-        }
-        public String getImageUrl(){
-            return this.imageUrl;
-        }
+    private int id;
+    private String name;
+    private String imageUrl;
 
-    public CategoryGroupBean() {
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public String toString() {
-        return "CategoryGroupBean{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                '}';
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

@@ -1,43 +1,44 @@
 package day1010.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-public class AlbumsBean {
+import java.io.Serializable;
+
+public class AlbumsBean implements Serializable {
+
     private int pid;
-
     private int imgId;
-
     private String imgUrl;
-
     private String thumbUrl;
 
-    public void setPid(int pid){
-        this.pid = pid;
-    }
-    public int getPid(){
-        return this.pid;
-    }
-    public void setImgId(int imgId){
-        this.imgId = imgId;
-    }
-    public int getImgId(){
-        return this.imgId;
-    }
-    public void setImgUrl(String imgUrl){
-        this.imgUrl = imgUrl;
-    }
-    public String getImgUrl(){
-        return this.imgUrl;
-    }
-    public void setThumbUrl(String thumbUrl){
-        this.thumbUrl = thumbUrl;
-    }
-    public String getThumbUrl(){
-        return this.thumbUrl;
+    public int getPid() {
+        return pid;
     }
 
-    public AlbumsBean() {
+    public void setPid(int pid) {
+        this.pid = pid;
+    }
+
+    public int getImgId() {
+        return imgId;
+    }
+
+    public void setImgId(int imgId) {
+        this.imgId = imgId;
+    }
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
+    }
+
+    public String getThumbUrl() {
+        return thumbUrl;
+    }
+
+    public void setThumbUrl(String thumbUrl) {
+        this.thumbUrl = thumbUrl;
     }
 
     @Override

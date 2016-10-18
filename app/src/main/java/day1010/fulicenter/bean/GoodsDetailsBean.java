@@ -1,156 +1,158 @@
 package day1010.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.io.Serializable;
+import java.util.Arrays;
 
-public class GoodsDetailsBean {
-        private int id;
+public class GoodsDetailsBean implements Serializable {
 
-        private int goodsId;
+    private int id;
+    private int goodsId;
+    private int catId;
+    private String goodsName;
+    private String goodsEnglishName;
+    private String goodsBrief;
+    private String shopPrice;
+    private String currencyPrice;
+    private String promotePrice;
+    private String rankPrice;
+    private String goodsThumb;
+    private String goodsImg;
+    private long addTime;
+    private String shareUrl;
+    private boolean isPromote;
+    private PropertiesBean[] properties;
 
-        private int catId;
+    public int getId() {
+        return id;
+    }
 
-        private String goodsName;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-        private String goodsEnglishName;
+    public int getGoodsId() {
+        return goodsId;
+    }
 
-        private String goodsBrief;
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
+    }
 
-        private String shopPrice;
+    public int getCatId() {
+        return catId;
+    }
 
-        private String currencyPrice;
+    public void setCatId(int catId) {
+        this.catId = catId;
+    }
 
-        private String promotePrice;
+    public String getGoodsName() {
+        return goodsName;
+    }
 
-        private String rankPrice;
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
+    }
 
-        private boolean isPromote;
+    public String getGoodsEnglishName() {
+        return goodsEnglishName;
+    }
 
-        private String goodsThumb;
+    public void setGoodsEnglishName(String goodsEnglishName) {
+        this.goodsEnglishName = goodsEnglishName;
+    }
 
-        private String goodsImg;
+    public String getGoodsBrief() {
+        return goodsBrief;
+    }
 
-        private int addTime;
+    public void setGoodsBrief(String goodsBrief) {
+        this.goodsBrief = goodsBrief;
+    }
 
-        private String shareUrl;
+    public String getShopPrice() {
+        return shopPrice;
+    }
 
-        private List<Properties> properties;
+    public void setShopPrice(String shopPrice) {
+        this.shopPrice = shopPrice;
+    }
 
-        private boolean promote;
+    public String getCurrencyPrice() {
+        return currencyPrice;
+    }
 
-        public void setId(int id){
-            this.id = id;
-        }
-        public int getId(){
-            return this.id;
-        }
-        public void setGoodsId(int goodsId){
-            this.goodsId = goodsId;
-        }
-        public int getGoodsId(){
-            return this.goodsId;
-        }
-        public void setCatId(int catId){
-            this.catId = catId;
-        }
-        public int getCatId(){
-            return this.catId;
-        }
-        public void setGoodsName(String goodsName){
-            this.goodsName = goodsName;
-        }
-        public String getGoodsName(){
-            return this.goodsName;
-        }
-        public void setGoodsEnglishName(String goodsEnglishName){
-            this.goodsEnglishName = goodsEnglishName;
-        }
-        public String getGoodsEnglishName(){
-            return this.goodsEnglishName;
-        }
-        public void setGoodsBrief(String goodsBrief){
-            this.goodsBrief = goodsBrief;
-        }
-        public String getGoodsBrief(){
-            return this.goodsBrief;
-        }
-        public void setShopPrice(String shopPrice){
-            this.shopPrice = shopPrice;
-        }
-        public String getShopPrice(){
-            return this.shopPrice;
-        }
-        public void setCurrencyPrice(String currencyPrice){
-            this.currencyPrice = currencyPrice;
-        }
-        public String getCurrencyPrice(){
-            return this.currencyPrice;
-        }
-        public void setPromotePrice(String promotePrice){
-            this.promotePrice = promotePrice;
-        }
-        public String getPromotePrice(){
-            return this.promotePrice;
-        }
-        public void setRankPrice(String rankPrice){
-            this.rankPrice = rankPrice;
-        }
-        public String getRankPrice(){
-            return this.rankPrice;
-        }
-        public void setIsPromote(boolean isPromote){
-            this.isPromote = isPromote;
-        }
-        public boolean getIsPromote(){
-            return this.isPromote;
-        }
-        public void setGoodsThumb(String goodsThumb){
-            this.goodsThumb = goodsThumb;
-        }
-        public String getGoodsThumb(){
-            return this.goodsThumb;
-        }
-        public void setGoodsImg(String goodsImg){
-            this.goodsImg = goodsImg;
-        }
-        public String getGoodsImg(){
-            return this.goodsImg;
-        }
-        public void setAddTime(int addTime){
-            this.addTime = addTime;
-        }
-        public int getAddTime(){
-            return this.addTime;
-        }
-        public void setShareUrl(String shareUrl){
-            this.shareUrl = shareUrl;
-        }
-        public String getShareUrl(){
-            return this.shareUrl;
-        }
-        public void setProperties(List<Properties> properties){
-            this.properties = properties;
-        }
-        public List<Properties> getProperties(){
-            return this.properties;
-        }
-        public void setPromote(boolean promote){
-            this.promote = promote;
-        }
-        public boolean getPromote(){
-            return this.promote;
-        }
+    public void setCurrencyPrice(String currencyPrice) {
+        this.currencyPrice = currencyPrice;
+    }
 
-    public GoodsDetailsBean() {
+    public String getPromotePrice() {
+        return promotePrice;
+    }
+
+    public void setPromotePrice(String promotePrice) {
+        this.promotePrice = promotePrice;
+    }
+
+    public String getRankPrice() {
+        return rankPrice;
+    }
+
+    public void setRankPrice(String rankPrice) {
+        this.rankPrice = rankPrice;
+    }
+
+    public String getGoodsThumb() {
+        return goodsThumb;
+    }
+
+    public void setGoodsThumb(String goodsThumb) {
+        this.goodsThumb = goodsThumb;
+    }
+
+    public String getGoodsImg() {
+        return goodsImg;
+    }
+
+    public void setGoodsImg(String goodsImg) {
+        this.goodsImg = goodsImg;
+    }
+
+    public long getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(long addTime) {
+        this.addTime = addTime;
+    }
+
+    public String getShareUrl() {
+        return shareUrl;
+    }
+
+    public void setShareUrl(String shareUrl) {
+        this.shareUrl = shareUrl;
+    }
+
+    public boolean isPromote() {
+        return isPromote;
+    }
+
+    public void setPromote(boolean promote) {
+        this.isPromote = promote;
+    }
+
+    public PropertiesBean[] getProperties() {
+        return properties;
+    }
+
+    public void setProperties(PropertiesBean[] properties) {
+        this.properties = properties;
     }
 
     @Override
     public String toString() {
-        return "GoodsDetailsBean{" +
+        return "GoodDetailsBean{" +
                 "id=" + id +
                 ", goodsId=" + goodsId +
                 ", catId=" + catId +
@@ -161,13 +163,12 @@ public class GoodsDetailsBean {
                 ", currencyPrice='" + currencyPrice + '\'' +
                 ", promotePrice='" + promotePrice + '\'' +
                 ", rankPrice='" + rankPrice + '\'' +
-                ", isPromote=" + isPromote +
                 ", goodsThumb='" + goodsThumb + '\'' +
                 ", goodsImg='" + goodsImg + '\'' +
                 ", addTime=" + addTime +
                 ", shareUrl='" + shareUrl + '\'' +
-                ", properties=" + properties +
-                ", promote=" + promote +
+                ", promote=" + isPromote +
+                ", properties=" + Arrays.toString(properties) +
                 '}';
     }
 }

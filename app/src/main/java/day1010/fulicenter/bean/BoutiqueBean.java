@@ -1,51 +1,61 @@
 package day1010.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-public class BoutiqueBean {
-        private int id;
+import java.io.Serializable;
 
-        private String title;
+public class BoutiqueBean implements Serializable {
 
-        private String description;
+    /**
+     * id : 262
+     * title : 不一样的新妆，不一样的美丽
+     * description : 快速增长修护预防脱发洗发水让头发健康快速生长更美丽
+     * name : 拯救头发，美丽新妆
+     * imageurl : cat_image/boutique1.jpg
+     */
 
-        private String name;
+    private int id;
+    private String title;
+    private String description;
+    private String name;
+    private String imageurl;
 
-        private String imageurl;
+    public int getId() {
+        return id;
+    }
 
-        public void setId(int id){
-            this.id = id;
-        }
-        public int getId(){
-            return this.id;
-        }
-        public void setTitle(String title){
-            this.title = title;
-        }
-        public String getTitle(){
-            return this.title;
-        }
-        public void setDescription(String description){
-            this.description = description;
-        }
-        public String getDescription(){
-            return this.description;
-        }
-        public void setName(String name){
-            this.name = name;
-        }
-        public String getName(){
-            return this.name;
-        }
-        public void setImageurl(String imageurl){
-            this.imageurl = imageurl;
-        }
-        public String getImageurl(){
-            return this.imageurl;
-        }
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public BoutiqueBean() {
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageurl) {
+        this.imageurl = imageurl;
     }
 
     @Override

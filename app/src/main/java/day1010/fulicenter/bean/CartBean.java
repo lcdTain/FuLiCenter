@@ -1,79 +1,93 @@
 package day1010.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-public class CartBean {
-        private int id;
+import java.io.Serializable;
 
-        private String userName;
+public class CartBean implements Serializable {
 
-        private int goodsId;
+    private int id=0;
+    private String userName;
+    private int goodsId;
+    private int count;
+    private boolean isChecked;
+    private GoodsDetailsBean goods;
 
-        private String goods;
+    public int getId() {
+        return id;
+    }
 
-        private int count;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-        private boolean isChecked;
+    public String getUserName() {
+        return userName;
+    }
 
-        private boolean checked;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-        public void setId(int id){
-            this.id = id;
-        }
-        public int getId(){
-            return this.id;
-        }
-        public void setUserName(String userName){
-            this.userName = userName;
-        }
-        public String getUserName(){
-            return this.userName;
-        }
-        public void setGoodsId(int goodsId){
-            this.goodsId = goodsId;
-        }
-        public int getGoodsId(){
-            return this.goodsId;
-        }
-        public void setGoods(String goods){
-            this.goods = goods;
-        }
-        public String getGoods(){
-            return this.goods;
-        }
-        public void setCount(int count){
-            this.count = count;
-        }
-        public int getCount(){
-            return this.count;
-        }
-        public void setIsChecked(boolean isChecked){
-            this.isChecked = isChecked;
-        }
-        public boolean getIsChecked(){
-            return this.isChecked;
-        }
-        public void setChecked(boolean checked){
-            this.checked = checked;
-        }
-        public boolean getChecked(){
-            return this.checked;
-        }
+    public int getGoodsId() {
+        return goodsId;
+    }
+
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.isChecked = checked;
+    }
+
+    public GoodsDetailsBean getGoods() {
+        return goods;
+    }
+
+    public void setGoods(GoodsDetailsBean goods) {
+        this.goods = goods;
+    }
+
 
     public CartBean() {
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CartBean)) return false;
+
+        CartBean cartBean = (CartBean) o;
+
+        return getId() == cartBean.getId();
+
+    }
+
+    @Override
+    public int hashCode() {
+        return getId();
     }
 
     @Override
     public String toString() {
         return "CartBean{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", userName=" + userName +
                 ", goodsId=" + goodsId +
-                ", goods='" + goods + '\'' +
                 ", count=" + count +
-                ", isChecked=" + isChecked +
-                ", checked=" + checked +
+                ", checked=" + isChecked +
+                ", goods='" + goods + '\'' +
                 '}';
     }
 }

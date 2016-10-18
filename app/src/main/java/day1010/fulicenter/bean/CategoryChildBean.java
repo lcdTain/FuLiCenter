@@ -1,43 +1,51 @@
 package day1010.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-public class CategoryChildBean {
-        private int id;
+import java.io.Serializable;
 
-        private int parentId;
+public class CategoryChildBean implements Serializable {
 
-        private String name;
+    /**
+     * id : 348
+     * parentId : 344
+     * name : 败姐推荐
+     * imageUrl : cat_image/256_4.png
+     */
 
-        private String imageUrl;
+    private int id;
+    private int parentId;
+    private String name;
+    private String imageUrl;
 
-        public void setId(int id){
-            this.id = id;
-        }
-        public int getId(){
-            return this.id;
-        }
-        public void setParentId(int parentId){
-            this.parentId = parentId;
-        }
-        public int getParentId(){
-            return this.parentId;
-        }
-        public void setName(String name){
-            this.name = name;
-        }
-        public String getName(){
-            return this.name;
-        }
-        public void setImageUrl(String imageUrl){
-            this.imageUrl = imageUrl;
-        }
-        public String getImageUrl(){
-            return this.imageUrl;
-        }
+    public int getId() {
+        return id;
+    }
 
-    public CategoryChildBean() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getParentId() {
+        return parentId;
+    }
+
+    public void setParentId(int parentId) {
+        this.parentId = parentId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     @Override

@@ -1,75 +1,91 @@
 package day1010.fulicenter.bean;
 
-/**
- * Created by Administrator on 2016/10/13.
- */
-public class CollectBean {
-        private int id;
+import java.io.Serializable;
 
-        private int userName;
+public class CollectBean implements Serializable {
 
-        private int goodsId;
+    /**
+     * id : 7672
+     * userName : 7672
+     * goodsId : 7672
+     * goodsName : 趣味煮蛋模具
+     * goodsEnglishName : Kotobuki
+     * goodsThumb : http:121.197.1.20/images/201507/thumb_img/6372_thumb_G_1437108490316.jpg
+     * goodsImg : http:121.197.1.20/images/201507/1437108490034171398.jpg
+     * addTime : 1442419200000
+     */
 
-        private String goodsName;
+    private int id;
+    private String userName;
+    private int goodsId;
+    private String goodsName;
+    private String goodsEnglishName;
+    private String goodsThumb;
+    private String goodsImg;
+    private long addTime;
 
-        private String goodsEnglishName;
+    public int getId() {
+        return id;
+    }
 
-        private String goodsThumb;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-        private String goodsImg;
+    public String getUserName() {
+        return userName;
+    }
 
-        private int addTime;
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-        public void setId(int id){
-            this.id = id;
-        }
-        public int getId(){
-            return this.id;
-        }
-        public void setUserName(int userName){
-            this.userName = userName;
-        }
-        public int getUserName(){
-            return this.userName;
-        }
-        public void setGoodsId(int goodsId){
-            this.goodsId = goodsId;
-        }
-        public int getGoodsId(){
-            return this.goodsId;
-        }
-        public void setGoodsName(String goodsName){
-            this.goodsName = goodsName;
-        }
-        public String getGoodsName(){
-            return this.goodsName;
-        }
-        public void setGoodsEnglishName(String goodsEnglishName){
-            this.goodsEnglishName = goodsEnglishName;
-        }
-        public String getGoodsEnglishName(){
-            return this.goodsEnglishName;
-        }
-        public void setGoodsThumb(String goodsThumb){
-            this.goodsThumb = goodsThumb;
-        }
-        public String getGoodsThumb(){
-            return this.goodsThumb;
-        }
-        public void setGoodsImg(String goodsImg){
-            this.goodsImg = goodsImg;
-        }
-        public String getGoodsImg(){
-            return this.goodsImg;
-        }
-        public void setAddTime(int addTime){
-            this.addTime = addTime;
-        }
-        public int getAddTime(){
-            return this.addTime;
-        }
+    public int getGoodsId() {
+        return goodsId;
+    }
 
-    public CollectBean() {
+    public void setGoodsId(int goodsId) {
+        this.goodsId = goodsId;
+    }
+
+    public String getGoodsName() {
+        return goodsName;
+    }
+
+    public void setGoodsName(String goodsName) {
+        this.goodsName = goodsName;
+    }
+
+    public String getGoodsEnglishName() {
+        return goodsEnglishName;
+    }
+
+    public void setGoodsEnglishName(String goodsEnglishName) {
+        this.goodsEnglishName = goodsEnglishName;
+    }
+
+    public String getGoodsThumb() {
+        return goodsThumb;
+    }
+
+    public void setGoodsThumb(String goodsThumb) {
+        this.goodsThumb = goodsThumb;
+    }
+
+    public String getGoodsImg() {
+        return goodsImg;
+    }
+
+    public void setGoodsImg(String goodsImg) {
+        this.goodsImg = goodsImg;
+    }
+
+    public long getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(long addTime) {
+        this.addTime = addTime;
     }
 
     @Override
