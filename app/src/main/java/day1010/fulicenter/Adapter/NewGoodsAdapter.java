@@ -140,8 +140,8 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
         public void onGoodsItemClick() {
             int goodsId = (int) layoutGoods.getTag();
             MFGT.gotoGoodsDetailsActivity((MainActivity)context,goodsId);
-            context.startActivity(new Intent(context, GoodsDetailActivity.class)
-                    .putExtra(I.GoodsDetails.KEY_GOODS_ID,goodsId));
+//            context.startActivity(new Intent(context, GoodsDetailActivity.class)
+//                    .putExtra(I.GoodsDetails.KEY_GOODS_ID,goodsId));
 
         }
     }
