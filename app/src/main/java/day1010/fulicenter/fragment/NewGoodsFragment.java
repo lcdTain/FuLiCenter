@@ -42,6 +42,7 @@ public class NewGoodsFragment extends Fragment {
     ArrayList<NewGoodsBean> mList;
     NewGoodsAdapter mAdapter;
     int mPageId = 1;
+    GridLayoutManager glm;
 
     public NewGoodsFragment() {
         // Required empty public constructor
@@ -59,18 +60,64 @@ public class NewGoodsFragment extends Fragment {
         mAdapter = new NewGoodsAdapter(context,mList);
         initView();
         initData();
+        setListener();
         return view;
     }
 
-    private void initData() {
+    private void setListener() {
+        setPullDown();
+        setPullUp();
+    }
+
+    private void setPullUp() {
+        rv.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                int lastPosition = glm.findLastVisibleItemPosition();
+                if (newState == RecyclerView.SCROLL_STATE_IDLE && mAdapter.isMore() && lastPosition == mAdapter.getItemCount()-1){
+                    mPageId++;
+                    downloadNewGoods(I.ACTION_PULL_UP);
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
+    }
+
+    private void setPullDown() {
+        sl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                sl.setRefreshing(true);
+                tvRefreshHint.setVisibility(View.VISIBLE);
+                mPageId = 1;
+                downloadNewGoods(I.ACTION_PULL_DOWN);
+            }
+        });
+    }
+
+    private void downloadNewGoods(final int action) {
         NetDao.downloadNewGoods(context, mPageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean[]>() {
             @Override
             public void onSuccess(NewGoodsBean[] result) {
                 sl.setRefreshing(false);
+                mAdapter.setMore(true);
                 tvRefreshHint.setVisibility(View.GONE);
                 if (result != null && result.length > 0){
                     ArrayList<NewGoodsBean> list = ConvertUtils.array2List(result);
-                    mAdapter.initData(list);
+                    if (action == I.ACTION_PULL_DOWN || action == I.ACTION_DOWNLOAD){
+                        mAdapter.initData(list);
+                    }else{
+                        mAdapter.addData(list);
+                    }
+                    if (list.size() < I.PAGE_SIZE_DEFAULT){
+                        mAdapter.setMore(false);
+                    }
+                }else{
                     mAdapter.setMore(false);
                 }
             }
@@ -83,8 +130,10 @@ public class NewGoodsFragment extends Fragment {
 
             }
         });
+    }
 
-
+    private void initData() {
+        downloadNewGoods(I.ACTION_DOWNLOAD);
     }
 
     private void initView() {
@@ -95,7 +144,7 @@ public class NewGoodsFragment extends Fragment {
                 getResources().getColor(R.color.google_green),
                 getResources().getColor(R.color.google_blue)
         );
-        GridLayoutManager glm = new GridLayoutManager(context, I.COLUM_NUM);
+        glm = new GridLayoutManager(context, I.COLUM_NUM);
         rv.setLayoutManager(glm);
         rv.setHasFixedSize(true);
         rv.setAdapter(mAdapter);
