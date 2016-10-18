@@ -25,6 +25,7 @@ import day1010.fulicenter.utils.CommonUtils;
 import day1010.fulicenter.utils.ConvertUtils;
 import day1010.fulicenter.utils.L;
 import day1010.fulicenter.utils.OkHttpUtils;
+import day1010.fulicenter.view.SpaceItemDecoration;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -148,6 +149,7 @@ public class NewGoodsFragment extends Fragment {
         rv.setLayoutManager(glm);
         rv.setHasFixedSize(true);
         rv.setAdapter(mAdapter);
+        rv.addItemDecoration(new SpaceItemDecoration(12));
 
     }
 
