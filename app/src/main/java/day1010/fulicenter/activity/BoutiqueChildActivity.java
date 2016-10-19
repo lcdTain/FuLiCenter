@@ -1,67 +1,77 @@
-package day1010.fulicenter.fragment;
-
+package day1010.fulicenter.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import day1010.fulicenter.Adapter.NewGoodsAdapter;
 import day1010.fulicenter.I;
 import day1010.fulicenter.R;
-import day1010.fulicenter.activity.MainActivity;
+import day1010.fulicenter.bean.BoutiqueBean;
 import day1010.fulicenter.bean.NewGoodsBean;
 import day1010.fulicenter.net.NetDao;
 import day1010.fulicenter.utils.CommonUtils;
 import day1010.fulicenter.utils.ConvertUtils;
-import day1010.fulicenter.utils.L;
+import day1010.fulicenter.utils.MFGT;
 import day1010.fulicenter.utils.OkHttpUtils;
 import day1010.fulicenter.view.SpaceItemDecoration;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class NewGoodsFragment extends BaseFragment {
+public class BoutiqueChildActivity extends BaseActivity {
 
-
+    @Bind(R.id.tvCommonTitle)
+    TextView tvCommonTitle;
     @Bind(R.id.tvRefreshHint)
     TextView tvRefreshHint;
     @Bind(R.id.rv)
     RecyclerView rv;
     @Bind(R.id.sl)
     SwipeRefreshLayout sl;
-    MainActivity context;
+    BoutiqueChildActivity context;
     ArrayList<NewGoodsBean> mList;
     NewGoodsAdapter mAdapter;
     int mPageId = 1;
     GridLayoutManager glm;
-
-    public NewGoodsFragment() {
-        // Required empty public constructor
-    }
-
+    BoutiqueBean boutique;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_new_goods, container, false);
-        ButterKnife.bind(this, view);
-        context = (MainActivity) getContext();
+    protected void onCreate(Bundle savedInstanceState) {
+        setContentView(R.layout.activity_boutique_child);
+        ButterKnife.bind(this);
+        boutique = (BoutiqueBean) getIntent().getSerializableExtra(I.Boutique.CAT_ID);
+        if (boutique == null){
+            finish();
+        }
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void initView() {
+        context = this;
         mList = new ArrayList<>();
         mAdapter = new NewGoodsAdapter(context,mList);
-        super.onCreateView(inflater, container, savedInstanceState);
-        return view;
+        sl.setColorSchemeColors(
+                getResources().getColor(R.color.google_red),
+                getResources().getColor(R.color.google_yellow),
+                getResources().getColor(R.color.google_green),
+                getResources().getColor(R.color.google_blue)
+        );
+        glm = new GridLayoutManager(context, I.COLUM_NUM);
+        rv.setLayoutManager(glm);
+        rv.setHasFixedSize(true);
+        rv.setAdapter(mAdapter);
+        rv.addItemDecoration(new SpaceItemDecoration(12));
+        tvCommonTitle.setText(boutique.getTitle());
+
     }
+
 
     @Override
     protected void setListener() {
@@ -101,7 +111,7 @@ public class NewGoodsFragment extends BaseFragment {
     }
 
     private void downloadNewGoods(final int action) {
-        NetDao.downloadNewGoods(context,I.CAT_ID, mPageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean[]>() {
+        NetDao.downloadNewGoods(context,boutique.getId(), mPageId, new OkHttpUtils.OnCompleteListener<NewGoodsBean[]>() {
             @Override
             public void onSuccess(NewGoodsBean[] result) {
                 sl.setRefreshing(false);
@@ -137,25 +147,8 @@ public class NewGoodsFragment extends BaseFragment {
         downloadNewGoods(I.ACTION_DOWNLOAD);
     }
 
-    @Override
-    protected void initView() {
-        L.i("main","initView()");
-        sl.setColorSchemeColors(
-                getResources().getColor(R.color.google_red),
-                getResources().getColor(R.color.google_yellow),
-                getResources().getColor(R.color.google_green),
-                getResources().getColor(R.color.google_blue)
-        );
-        glm = new GridLayoutManager(context, I.COLUM_NUM);
-        rv.setLayoutManager(glm);
-        rv.setHasFixedSize(true);
-        rv.setAdapter(mAdapter);
-        rv.addItemDecoration(new SpaceItemDecoration(12));
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
+    @OnClick(R.id.ivBack)
+    public void onClick() {
+        MFGT.finish(this);
     }
 }

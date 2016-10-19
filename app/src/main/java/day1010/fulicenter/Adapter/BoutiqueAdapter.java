@@ -1,32 +1,35 @@
 package day1010.fulicenter.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import day1010.fulicenter.I;
 import day1010.fulicenter.R;
 import day1010.fulicenter.bean.BoutiqueBean;
 import day1010.fulicenter.utils.ImageLoader;
-import day1010.fulicenter.utils.L;
-import day1010.fulicenter.view.FooterViewHolder;
+import day1010.fulicenter.utils.MFGT;
 
 /**
  * Created by Administrator on 2016/10/19.
  */
-public class BoutiqueAdapter extends RecyclerView.Adapter {
-    Context context;
+public class BoutiqueAdapter extends RecyclerView.Adapter<BoutiqueAdapter.BoutiqueViewHolder> {
+    Activity context;
     ArrayList<BoutiqueBean> mList;
 
-    public BoutiqueAdapter(Context context, ArrayList<BoutiqueBean> mList) {
+
+    public BoutiqueAdapter(Activity context, ArrayList<BoutiqueBean> mList) {
         this.context = context;
         this.mList = new ArrayList<>();
         this.mList.addAll(mList);
@@ -34,21 +37,20 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
 
 
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RecyclerView.ViewHolder holder = null;
-            holder = new BoutiqueViewHolder(LayoutInflater.from(context).inflate(R.layout.item_boutique, parent, false));
+    public BoutiqueViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        BoutiqueViewHolder holder = null;
+        holder = new BoutiqueViewHolder(LayoutInflater.from(context).inflate(R.layout.item_boutique, parent, false));
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        BoutiqueViewHolder boutiqueViewHolder = (BoutiqueViewHolder) holder;
+    public void onBindViewHolder(BoutiqueViewHolder holder, int position) {
         BoutiqueBean boutique = mList.get(position);
-        ImageLoader.downloadImg(context,boutiqueViewHolder.ivBoutiquePicture,boutique.getImageurl());
-        boutiqueViewHolder.tvBoutiqueTitle.setText(boutique.getTitle());
-        boutiqueViewHolder.tvBoutiqueName.setText(boutique.getName());
-        boutiqueViewHolder.tvBoutiqueDesc.setText(boutique.getDescription());
-
+        ImageLoader.downloadImg(context, holder.ivBoutiquePicture, boutique.getImageurl());
+        holder.tvBoutiqueTitle.setText(boutique.getTitle());
+        holder.tvBoutiqueName.setText(boutique.getName());
+        holder.tvBoutiqueDesc.setText(boutique.getDescription());
+        holder.rlBoutiqueItem.setTag(boutique);
     }
 
     @Override
@@ -58,7 +60,7 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemViewType(int position) {
-            return I.TYPE_ITEM;
+        return I.TYPE_ITEM;
     }
 
 
@@ -77,10 +79,17 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
         TextView tvBoutiqueName;
         @Bind(R.id.tvBoutique_desc)
         TextView tvBoutiqueDesc;
+        @Bind(R.id.rlBoutiqueItem)
+        RelativeLayout rlBoutiqueItem;
 
         BoutiqueViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
+        }
+        @OnClick(R.id.rlBoutiqueItem)
+        public void onBoutiqueClick(){
+            BoutiqueBean bean = (BoutiqueBean) rlBoutiqueItem.getTag();
+            MFGT.gotoBoutiqueChildActivity(context,bean);
         }
     }
 }

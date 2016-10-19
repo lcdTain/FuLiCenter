@@ -1,5 +1,6 @@
 package day1010.fulicenter.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -28,7 +29,7 @@ import day1010.fulicenter.view.FooterViewHolder;
  * Created by Administrator on 2016/10/17.
  */
 public class NewGoodsAdapter extends RecyclerView.Adapter {
-    Context context;
+    Activity context;
     List<NewGoodsBean> mList;
     String tvFooterText;
     boolean isMore;
@@ -36,7 +37,7 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
     private int footString;
 
 
-    public NewGoodsAdapter(Context context, List<NewGoodsBean> mList) {
+    public NewGoodsAdapter(Activity context, List<NewGoodsBean> mList) {
         this.context = context;
         this.mList = mList;
         mList = new ArrayList<>();
@@ -130,7 +131,7 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
         @OnClick(R.id.layout_goods)
         public void onGoodsItemClick() {
             int goodsId = (int) layoutGoods.getTag();
-            MFGT.gotoGoodsDetailsActivity((MainActivity)context,goodsId);
+            MFGT.gotoGoodsDetailsActivity(context,goodsId);
 //            context.startActivity(new Intent(context, GoodsDetailActivity.class)
 //                    .putExtra(I.GoodsDetails.KEY_GOODS_ID,goodsId));
 
