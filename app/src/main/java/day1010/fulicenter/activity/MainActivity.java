@@ -16,7 +16,7 @@ import day1010.fulicenter.fragment.BoutiqueFragment;
 import day1010.fulicenter.fragment.NewGoodsFragment;
 import day1010.fulicenter.utils.L;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Bind(R.id.rb_new_good)
     RadioButton rbNewGood;
@@ -40,13 +40,12 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         L.i("main", "onCreate");
-        initView();
-        initFragment();
+        super.onCreate(savedInstanceState);
     }
+
 
     private void initFragment() {
         mFragments = new Fragment[5];
@@ -63,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
                 .commit();
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         rbs = new RadioButton[5];
         rbs[0] = rbNewGood;
         rbs[1] = rbBoutique;
@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         setFragment();
-        setRadioButtonStatus();
     }
 
     private void setFragment() {
@@ -107,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         currentIndex = index;
     }
 
-    private void setRadioButtonStatus() {
+    protected void setRadioButtonStatus() {
         for (int i = 0; i < rbs.length; i++) {
             if (i == index) {
                 rbs[i].setChecked(true);
@@ -115,5 +114,18 @@ public class MainActivity extends AppCompatActivity {
                 rbs[i].setChecked(false);
             }
         }
+    }
+    @Override
+    protected void initData(){
+        initFragment();
+    }
+
+    @Override
+    protected void setListener() {
+
+    }
+
+    public void onBackPressed() {
+        finish();
     }
 }

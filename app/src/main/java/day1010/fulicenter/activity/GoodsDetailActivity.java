@@ -19,7 +19,7 @@ import day1010.fulicenter.utils.OkHttpUtils;
 import day1010.fulicenter.view.FlowIndicator;
 import day1010.fulicenter.view.SlideAutoLoopView;
 
-public class GoodsDetailActivity extends AppCompatActivity {
+public class GoodsDetailActivity extends BaseActivity {
 
     @Bind(R.id.tvEnglishName)
     TextView tvEnglishName;
@@ -40,24 +40,22 @@ public class GoodsDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goods_detail);
         ButterKnife.bind(this);
         goodsID = getIntent().getIntExtra(I.GoodsDetails.KEY_GOODS_ID, 0);
-        initView();
         L.e("main", "goodsId=" + goodsID);
         if (goodsID == 0){
             MFGT.finish(context);
         }
-        initData();
-        setListener();
+        super.onCreate(savedInstanceState);
+    }
+    @Override
+    protected void setListener() {
+
     }
 
-    private void setListener() {
-
-    }
-
-    private void initData() {
+    @Override
+    protected void initData() {
         NetDao.downloadGoodsDetail(context, goodsID, new OkHttpUtils.OnCompleteListener<GoodsDetailsBean>() {
             @Override
             public void onSuccess(GoodsDetailsBean result) {
@@ -105,7 +103,8 @@ public class GoodsDetailActivity extends AppCompatActivity {
     }
 
 
-    private void initView() {
+    @Override
+    protected void initView() {
         context = this;
     }
 
