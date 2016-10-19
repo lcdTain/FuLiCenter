@@ -31,7 +31,7 @@ import day1010.fulicenter.view.SpaceItemDecoration;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BoutiqueFragment extends Fragment{
+public class BoutiqueFragment extends BaseFragment{
 
 
     @Bind(R.id.tvRefreshHint)
@@ -59,13 +59,11 @@ public class BoutiqueFragment extends Fragment{
         context = (MainActivity) getContext();
         mList = new ArrayList<>();
         mAdapter = new BoutiqueAdapter(context,mList);
-        initView();
-        initData();
-        setListener();
+        super.onCreateView(inflater, container, savedInstanceState);
         return view;
     }
-
-    private void setListener() {
+    @Override
+    protected void setListener() {
         setPullDown();
 
     }
@@ -82,7 +80,8 @@ public class BoutiqueFragment extends Fragment{
     }
 
 
-    private void initData() {
+    @Override
+    protected void initData() {
         downloadBoutique();
 
     }
@@ -107,7 +106,8 @@ public class BoutiqueFragment extends Fragment{
         });
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         sl.setColorSchemeColors(
                 getResources().getColor(R.color.google_red),
                 getResources().getColor(R.color.google_yellow),

@@ -30,7 +30,7 @@ import day1010.fulicenter.view.SpaceItemDecoration;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class NewGoodsFragment extends Fragment {
+public class NewGoodsFragment extends BaseFragment {
 
 
     @Bind(R.id.tvRefreshHint)
@@ -59,13 +59,12 @@ public class NewGoodsFragment extends Fragment {
         context = (MainActivity) getContext();
         mList = new ArrayList<>();
         mAdapter = new NewGoodsAdapter(context,mList);
-        initView();
-        initData();
-        setListener();
+        super.onCreateView(inflater, container, savedInstanceState);
         return view;
     }
 
-    private void setListener() {
+    @Override
+    protected void setListener() {
         setPullDown();
         setPullUp();
     }
@@ -133,11 +132,13 @@ public class NewGoodsFragment extends Fragment {
         });
     }
 
-    private void initData() {
+    @Override
+    protected void initData() {
         downloadNewGoods(I.ACTION_DOWNLOAD);
     }
 
-    private void initView() {
+    @Override
+    protected void initView() {
         L.i("main","initView()");
         sl.setColorSchemeColors(
                 getResources().getColor(R.color.google_red),
