@@ -16,6 +16,8 @@ import day1010.fulicenter.I;
 import day1010.fulicenter.R;
 import day1010.fulicenter.bean.BoutiqueBean;
 import day1010.fulicenter.utils.ImageLoader;
+import day1010.fulicenter.utils.L;
+import day1010.fulicenter.view.FooterViewHolder;
 
 /**
  * Created by Administrator on 2016/10/19.
@@ -44,17 +46,19 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder holder = null;
         if (viewType == I.TYPE_FOOTER) {
-            holder = new NewGoodsAdapter.FooterViewHolder(LayoutInflater.from(context).inflate(R.layout.item_newgoods, parent, false));
+            holder = new FooterViewHolder(LayoutInflater.from(context).inflate(R.layout.item_footer, parent, false));
+        }else{
+            holder = new BoutiqueViewHolder(LayoutInflater.from(context).inflate(R.layout.item_boutique, parent, false));
         }
-        holder = new BoutiqueViewHolder(LayoutInflater.from(context).inflate(R.layout.item_boutique, parent, false));
         return holder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == I.TYPE_FOOTER){
-            NewGoodsAdapter.FooterViewHolder footerViewHolder = (NewGoodsAdapter.FooterViewHolder) holder;
+            FooterViewHolder footerViewHolder = (FooterViewHolder) holder;
             footerViewHolder.tvFooter.setText(getStringFooter());
+            return;
         }
         BoutiqueViewHolder boutiqueViewHolder = (BoutiqueViewHolder) holder;
         BoutiqueBean boutique = mList.get(position);
@@ -81,6 +85,17 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
 
     public int getStringFooter() {
         return isMore ? R.string.load_more : R.string.no_more;
+    }
+
+    public void initData(ArrayList<BoutiqueBean> list) {
+        mList.clear();
+        mList.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void addData(ArrayList<BoutiqueBean> list) {
+        mList.addAll(list);
+        notifyDataSetChanged();
     }
 
     class BoutiqueViewHolder extends RecyclerView.ViewHolder {

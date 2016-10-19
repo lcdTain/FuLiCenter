@@ -22,6 +22,7 @@ import day1010.fulicenter.activity.MainActivity;
 import day1010.fulicenter.bean.NewGoodsBean;
 import day1010.fulicenter.utils.ImageLoader;
 import day1010.fulicenter.utils.MFGT;
+import day1010.fulicenter.view.FooterViewHolder;
 
 /**
  * Created by Administrator on 2016/10/17.
@@ -110,16 +111,6 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
         notifyDataSetChanged();
     }
 
-
-    static class FooterViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.tvFooter)
-        TextView tvFooter;
-
-        FooterViewHolder(View view) {
-            super(view);
-            ButterKnife.bind(this, view);
-        }
-    }
 
     class GoodsViewHolder extends RecyclerView.ViewHolder {
         @Bind(R.id.ivGoodsPicture)
