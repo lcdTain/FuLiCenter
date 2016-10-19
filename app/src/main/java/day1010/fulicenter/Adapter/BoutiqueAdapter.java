@@ -25,7 +25,6 @@ import day1010.fulicenter.view.FooterViewHolder;
 public class BoutiqueAdapter extends RecyclerView.Adapter {
     Context context;
     ArrayList<BoutiqueBean> mList;
-    boolean isMore;
 
     public BoutiqueAdapter(Context context, ArrayList<BoutiqueBean> mList) {
         this.context = context;
@@ -33,33 +32,16 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
         this.mList.addAll(mList);
     }
 
-    public boolean isMore() {
-        return isMore;
-    }
-
-    public void setMore(boolean more) {
-        isMore = more;
-        notifyDataSetChanged();
-    }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerView.ViewHolder holder = null;
-        if (viewType == I.TYPE_FOOTER) {
-            holder = new FooterViewHolder(LayoutInflater.from(context).inflate(R.layout.item_footer, parent, false));
-        }else{
             holder = new BoutiqueViewHolder(LayoutInflater.from(context).inflate(R.layout.item_boutique, parent, false));
-        }
         return holder;
     }
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        if (getItemViewType(position) == I.TYPE_FOOTER){
-            FooterViewHolder footerViewHolder = (FooterViewHolder) holder;
-            footerViewHolder.tvFooter.setText(getStringFooter());
-            return;
-        }
         BoutiqueViewHolder boutiqueViewHolder = (BoutiqueViewHolder) holder;
         BoutiqueBean boutique = mList.get(position);
         ImageLoader.downloadImg(context,boutiqueViewHolder.ivBoutiquePicture,boutique.getImageurl());
@@ -71,29 +53,17 @@ public class BoutiqueAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return mList != null ? mList.size() + 1 : 1;
+        return mList != null ? mList.size() : 0;
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (position == getItemCount() - 1) {
-            return I.TYPE_FOOTER;
-        } else {
             return I.TYPE_ITEM;
-        }
     }
 
-    public int getStringFooter() {
-        return isMore ? R.string.load_more : R.string.no_more;
-    }
 
     public void initData(ArrayList<BoutiqueBean> list) {
         mList.clear();
-        mList.addAll(list);
-        notifyDataSetChanged();
-    }
-
-    public void addData(ArrayList<BoutiqueBean> list) {
         mList.addAll(list);
         notifyDataSetChanged();
     }

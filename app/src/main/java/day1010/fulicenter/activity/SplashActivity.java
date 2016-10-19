@@ -1,11 +1,15 @@
 package day1010.fulicenter.activity;
 
-import android.os.Handler; ;
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+import android.app.Application;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 
 import day1010.fulicenter.R;
 import day1010.fulicenter.utils.MFGT;
+
+;
 
 public class SplashActivity extends AppCompatActivity {
     private final long sleepTime = 2000;

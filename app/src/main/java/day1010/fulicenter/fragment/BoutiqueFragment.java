@@ -31,7 +31,7 @@ import day1010.fulicenter.view.SpaceItemDecoration;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BoutiqueFragment extends Fragment {
+public class BoutiqueFragment extends Fragment{
 
 
     @Bind(R.id.tvRefreshHint)
@@ -66,33 +66,35 @@ public class BoutiqueFragment extends Fragment {
     }
 
     private void setListener() {
+        setPullDown();
 
+    }
+
+    private void setPullDown() {
+        sl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                sl.setRefreshing(true);
+                tvRefreshHint.setVisibility(View.VISIBLE);
+                downloadBoutique();
+            }
+        });
     }
 
 
     private void initData() {
-        downloadBoutique(I.ACTION_DOWNLOAD);
+        downloadBoutique();
 
     }
-    private void downloadBoutique(final int action) {
+    private void downloadBoutique() {
         NetDao.downloadBoutique(context, new OkHttpUtils.OnCompleteListener<BoutiqueBean[]>() {
             @Override
             public void onSuccess(BoutiqueBean[] result) {
                 sl.setRefreshing(false);
-                mAdapter.setMore(true);
                 tvRefreshHint.setVisibility(View.GONE);
                 if (result != null && result.length > 0){
                     ArrayList<BoutiqueBean> list = ConvertUtils.array2List(result);
-                    if (action == I.ACTION_PULL_DOWN || action == I.ACTION_DOWNLOAD){
                         mAdapter.initData(list);
-                    }else{
-                        mAdapter.addData(list);
-                    }
-                    if (list.size() < I.PAGE_SIZE_DEFAULT){
-                        mAdapter.setMore(false);
-                    }
-                }else{
-                    mAdapter.setMore(false);
                 }
             }
 
