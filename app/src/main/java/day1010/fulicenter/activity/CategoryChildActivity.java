@@ -17,18 +17,19 @@ import butterknife.OnClick;
 import day1010.fulicenter.Adapter.NewGoodsAdapter;
 import day1010.fulicenter.I;
 import day1010.fulicenter.R;
+import day1010.fulicenter.bean.CategoryChildBean;
 import day1010.fulicenter.bean.NewGoodsBean;
 import day1010.fulicenter.net.NetDao;
 import day1010.fulicenter.utils.CommonUtils;
 import day1010.fulicenter.utils.ConvertUtils;
 import day1010.fulicenter.utils.MFGT;
 import day1010.fulicenter.utils.OkHttpUtils;
+import day1010.fulicenter.view.CatChildFilterButton;
 import day1010.fulicenter.view.SpaceItemDecoration;
 
 public class CategoryChildActivity extends BaseActivity {
 
-    @Bind(R.id.tvCommonTitle)
-    TextView tvCommonTitle;
+
     @Bind(R.id.tvRefreshHint)
     TextView tvRefreshHint;
     @Bind(R.id.rv)
@@ -49,6 +50,10 @@ public class CategoryChildActivity extends BaseActivity {
     boolean addTimeAsc = true;
     boolean priceAsc = false;
     int sortBy = I.SORT_BY_ADDTIME_DESC;
+    @Bind(R.id.btnCatChildFilter)
+    CatChildFilterButton btnCatChildFilter;
+    String groupName;
+    ArrayList<CategoryChildBean> childList;
 
 
     @Override
@@ -59,6 +64,8 @@ public class CategoryChildActivity extends BaseActivity {
         if (catId == 0) {
             finish();
         }
+        groupName = getIntent().getStringExtra(I.CategoryGroup.NAME);
+        childList = (ArrayList<CategoryChildBean>) getIntent().getSerializableExtra(I.CategoryChild.ID);
         super.onCreate(savedInstanceState);
     }
 
@@ -78,6 +85,7 @@ public class CategoryChildActivity extends BaseActivity {
         rv.setHasFixedSize(true);
         rv.setAdapter(mAdapter);
         rv.addItemDecoration(new SpaceItemDecoration(12));
+        btnCatChildFilter.setText(groupName);
     }
 
     @Override
@@ -152,42 +160,44 @@ public class CategoryChildActivity extends BaseActivity {
     @Override
     protected void initData() {
         downloadCategoryGoods(I.ACTION_DOWNLOAD);
+        btnCatChildFilter.setOnCatFilterClickListener(groupName, childList);
     }
 
-    @OnClick(R.id.ivBack)
-    public void onClick() {
-        MFGT.finish(this);
-    }
 
     @OnClick({R.id.btn_sort_price, R.id.btn_sort_addtime})
     public void onClick(View view) {
         Drawable right;
         switch (view.getId()) {
             case R.id.btn_sort_price:
-                if (priceAsc){
+                if (priceAsc) {
                     sortBy = I.SORT_BY_PRICE_ASC;
                     right = getResources().getDrawable(R.mipmap.arrow_order_up);
-                }else{
+                } else {
                     sortBy = I.SORT_BY_PRICE_DESC;
                     right = getResources().getDrawable(R.mipmap.arrow_order_down);
                 }
-                right.setBounds(0,0,right.getIntrinsicWidth(),right.getIntrinsicHeight());
-                btnSortPrice.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,right,null);
+                right.setBounds(0, 0, right.getIntrinsicWidth(), right.getIntrinsicHeight());
+                btnSortPrice.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, right, null);
                 priceAsc = !priceAsc;
                 break;
             case R.id.btn_sort_addtime:
-                if (addTimeAsc){
+                if (addTimeAsc) {
                     sortBy = I.SORT_BY_ADDTIME_ASC;
                     right = getResources().getDrawable(R.mipmap.arrow_order_up);
-                }else{
+                } else {
                     sortBy = I.SORT_BY_ADDTIME_DESC;
                     right = getResources().getDrawable(R.mipmap.arrow_order_down);
                 }
-                right.setBounds(0,0,right.getIntrinsicWidth(),right.getIntrinsicHeight());
-                btnSortAddtime.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,right,null);
+                right.setBounds(0, 0, right.getIntrinsicWidth(), right.getIntrinsicHeight());
+                btnSortAddtime.setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, right, null);
                 addTimeAsc = !addTimeAsc;
                 break;
         }
         mAdapter.setSortBy(sortBy);
+    }
+
+    @OnClick(R.id.ivBack)
+    public void onClick() {
+        MFGT.finish(this);
     }
 }
