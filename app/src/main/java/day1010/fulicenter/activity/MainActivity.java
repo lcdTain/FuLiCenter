@@ -3,14 +3,13 @@ package day1010.fulicenter.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import day1010.fulicenter.fragment.CategoryFragment;
 import day1010.fulicenter.R;
 import day1010.fulicenter.fragment.BoutiqueFragment;
 import day1010.fulicenter.fragment.NewGoodsFragment;
@@ -37,6 +36,7 @@ public class MainActivity extends BaseActivity {
     RadioButton[] rbs;
     NewGoodsFragment newGoodsFragment;
     BoutiqueFragment boutiqueFragment;
+    CategoryFragment categoryFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +51,17 @@ public class MainActivity extends BaseActivity {
         mFragments = new Fragment[5];
         newGoodsFragment = new NewGoodsFragment();
         boutiqueFragment = new BoutiqueFragment();
+        categoryFragment = new CategoryFragment();
         mFragments[0] = newGoodsFragment;
         mFragments[1] = boutiqueFragment;
+        mFragments[2] = categoryFragment;
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment,newGoodsFragment)
                 .add(R.id.fragment,boutiqueFragment)
+                .add(R.id.fragment,categoryFragment)
                 .hide(boutiqueFragment)
+                .hide(categoryFragment)
                 .show(newGoodsFragment)
                 .commit();
     }
