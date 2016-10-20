@@ -1,5 +1,6 @@
 package day1010.fulicenter.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +21,11 @@ import day1010.fulicenter.utils.ImageLoader;
  * Created by Administrator on 2016/10/20.
  */
 public class CategoryAdapter extends BaseExpandableListAdapter {
-    Context context;
+    Activity context;
     ArrayList<CategoryGroupBean> groupList;
     ArrayList<ArrayList<CategoryChildBean>> childList;
 
-    public CategoryAdapter(Context context, ArrayList<CategoryGroupBean> groupList, ArrayList<ArrayList<CategoryChildBean>> childList) {
+    public CategoryAdapter(Activity context, ArrayList<CategoryGroupBean> groupList, ArrayList<ArrayList<CategoryChildBean>> childList) {
         this.context = context;
         this.groupList = new ArrayList<>();
         this.groupList.addAll(groupList);
@@ -107,6 +108,18 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     @Override
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return false;
+    }
+
+    public void initData(ArrayList<CategoryGroupBean> groupList, ArrayList<ArrayList<CategoryChildBean>> childList) {
+        if (this.groupList != null){
+            this.groupList.clear();
+        }
+        this.groupList.addAll(groupList);
+        if (this.childList != null){
+            this.childList.clear();
+        }
+        this.childList.addAll(childList);
+        notifyDataSetChanged();
     }
 
     static class GroupViewHolder {
