@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.Bind;
@@ -36,6 +38,13 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
 
     private int footString;
 
+    int sortBy = I.SORT_BY_ADDTIME_DESC;
+
+    public void setSortBy(int sortBy) {
+        this.sortBy = sortBy;
+        sortBy();
+        notifyDataSetChanged();
+    }
 
     public NewGoodsAdapter(Activity context, List<NewGoodsBean> mList) {
         this.context = context;
@@ -136,5 +145,32 @@ public class NewGoodsAdapter extends RecyclerView.Adapter {
 //                    .putExtra(I.GoodsDetails.KEY_GOODS_ID,goodsId));
 
         }
+    }
+    private void sortBy(){
+        Collections.sort(mList, new Comparator<NewGoodsBean>() {
+            @Override
+            public int compare(NewGoodsBean left, NewGoodsBean right) {
+                int result = 0;
+                switch (sortBy){
+                    case I.SORT_BY_ADDTIME_ASC:
+                        result = (int)(Long.valueOf(left.getAddTime())-Long.valueOf(right.getAddTime()));
+                        break;
+                    case I.SORT_BY_ADDTIME_DESC:
+                        result = (int)(Long.valueOf(right.getAddTime())-Long.valueOf(left.getAddTime()));
+                        break;
+                    case I.SORT_BY_PRICE_ASC:
+                        result = getPrince(left.getCurrencyPrice())-getPrince(right.getCurrencyPrice());
+                        break;
+                    case I.SORT_BY_PRICE_DESC:
+                        result = getPrince(right.getCurrencyPrice())-getPrince(left.getCurrencyPrice());
+                        break;
+                }
+                return result;
+            }
+            private int getPrince(String price){
+                price = price.substring(price.indexOf("￥")+1);
+                return Integer.valueOf(price);
+            }
+        });
     }
 }
