@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:background="#02acfa">
+    <ImageView
+        android:id="@+id/ivGroup_thumb"
+        android:layout_marginLeft="50dp"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/nopic"/>
+    <TextView
+        android:id="@+id/tvGroup_name"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="彩妆"
+        android:textSize="30sp"
+        android:layout_marginLeft="50dp"
+        android:textColor="#ff00bb"
+        android:layout_toRightOf="@id/ivGroup_thumb"/>
+    <ImageView
+        android:id="@+id/ivGroup_Expand"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/expand_on"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>
