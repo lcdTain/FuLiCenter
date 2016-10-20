@@ -1,11 +1,11 @@
 package day1010.fulicenter.Adapter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +16,7 @@ import day1010.fulicenter.R;
 import day1010.fulicenter.bean.CategoryChildBean;
 import day1010.fulicenter.bean.CategoryGroupBean;
 import day1010.fulicenter.utils.ImageLoader;
+import day1010.fulicenter.utils.MFGT;
 
 /**
  * Created by Administrator on 2016/10/20.
@@ -24,6 +25,7 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     Activity context;
     ArrayList<CategoryGroupBean> groupList;
     ArrayList<ArrayList<CategoryChildBean>> childList;
+
 
     public CategoryAdapter(Activity context, ArrayList<CategoryGroupBean> groupList, ArrayList<ArrayList<CategoryChildBean>> childList) {
         this.context = context;
@@ -94,13 +96,20 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
             view = View.inflate(context, R.layout.item_category_child, null);
             holder = new ChildViewHolder(view);
             view.setTag(holder);
-        }else{
+        } else {
             holder = (ChildViewHolder) view.getTag();
         }
-        CategoryChildBean child = getChild(groupPosition, childPosition);
-        if (child != null){
-            ImageLoader.downloadImg(context,holder.ivChildThumb,child.getImageUrl());
+        final CategoryChildBean child = getChild(groupPosition, childPosition);
+        if (child != null) {
+            ImageLoader.downloadImg(context, holder.ivChildThumb, child.getImageUrl());
             holder.tvChildName.setText(child.getName());
+            holder.layoutCategoryChild.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    MFGT.gotoCategoryChildActivity(context,child.getId());
+
+                }
+            });
         }
         return view;
     }
@@ -111,11 +120,11 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
     }
 
     public void initData(ArrayList<CategoryGroupBean> groupList, ArrayList<ArrayList<CategoryChildBean>> childList) {
-        if (this.groupList != null){
+        if (this.groupList != null) {
             this.groupList.clear();
         }
         this.groupList.addAll(groupList);
-        if (this.childList != null){
+        if (this.childList != null) {
             this.childList.clear();
         }
         this.childList.addAll(childList);
@@ -140,6 +149,8 @@ public class CategoryAdapter extends BaseExpandableListAdapter {
         ImageView ivChildThumb;
         @Bind(R.id.tvChild_name)
         TextView tvChildName;
+        @Bind(R.id.layoutCategoryChild)
+        RelativeLayout layoutCategoryChild;
 
         ChildViewHolder(View view) {
             ButterKnife.bind(this, view);
