@@ -2,22 +2,21 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:background="#02acfa">
+    android:layout_height="80dp"
+    android:background="#f2e6e6">
     <ImageView
         android:id="@+id/ivGroup_thumb"
-        android:layout_marginLeft="50dp"
-        android:layout_width="70dp"
-        android:layout_height="match_parent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@drawable/nopic"/>
     <TextView
         android:id="@+id/tvGroup_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
         android:text="彩妆"
         android:textSize="30sp"
-        android:layout_marginLeft="50dp"
+        android:layout_marginLeft="40dp"
         android:textColor="#ff00bb"
         android:layout_toRightOf="@id/ivGroup_thumb"/>
     <ImageView

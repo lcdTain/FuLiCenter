@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="70dp"
-    android:background="#04fac5">
+    android:layout_height="60dp"
+    android:background="#71fa8b">
     <ImageView
         android:id="@+id/ivChild_thumb"
         android:layout_marginLeft="50dp"
-        android:layout_width="70dp"
-        android:layout_height="match_parent"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:src="@drawable/nopic"/>
     <TextView
         android:id="@+id/tvChild_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:gravity="center_vertical"
+        android:layout_centerVertical="true"
         android:text="彩妆"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_marginLeft="50dp"
-        android:textColor="#ff00bb"
+        android:textColor="#000"
         android:layout_toRightOf="@id/ivChild_thumb"/>
 
 </RelativeLayout>
