@@ -9,11 +9,13 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import day1010.fulicenter.FuLiCenterApplication;
 import day1010.fulicenter.fragment.CategoryFragment;
 import day1010.fulicenter.R;
 import day1010.fulicenter.fragment.BoutiqueFragment;
 import day1010.fulicenter.fragment.NewGoodsFragment;
 import day1010.fulicenter.utils.L;
+import day1010.fulicenter.utils.MFGT;
 
 public class MainActivity extends BaseActivity {
 
@@ -91,7 +93,11 @@ public class MainActivity extends BaseActivity {
                 index = 3;
                 break;
             case R.id.rb_personal:
-                index = 4;
+                if (FuLiCenterApplication.getUsername()==null){
+                    MFGT.gotoLoginActivity(this);
+                }else{
+                    index = 4;
+                }
                 break;
         }
         setFragment();
