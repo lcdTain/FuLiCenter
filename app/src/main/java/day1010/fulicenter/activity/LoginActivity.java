@@ -16,6 +16,7 @@ import day1010.fulicenter.net.NetDao;
 import day1010.fulicenter.utils.CommonUtils;
 import day1010.fulicenter.utils.MFGT;
 import day1010.fulicenter.utils.OkHttpUtils;
+import day1010.fulicenter.utils.ResultUtils;
 
 /**
  * Created by Administrator on 2016/10/21.
@@ -86,10 +87,10 @@ public class LoginActivity extends BaseActivity {
         final ProgressDialog pd = new ProgressDialog(context);
         pd.setMessage(getResources().getString(R.string.login));
         pd.show();
-        NetDao.login(context, Username, Password, new OkHttpUtils.OnCompleteListener<Result>() {
+        NetDao.login(context, Username, Password, new OkHttpUtils.OnCompleteListener<String>() {
             @Override
-            public void onSuccess(Result result) {
-                pd.dismiss();
+            public void onSuccess(String s) {
+                Result result = ResultUtils.getResultFromJson(s, I.User.class);
                 if (result == null){
                     CommonUtils.showShortToast(R.string.login_fail);
                 }else{
@@ -104,9 +105,9 @@ public class LoginActivity extends BaseActivity {
                         }else{
                             CommonUtils.showLongToast(R.string.login_fail);
                         }
-
                     }
                 }
+                pd.dismiss();
             }
 
             @Override
