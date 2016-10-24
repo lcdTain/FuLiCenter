@@ -1,5 +1,6 @@
 package day1010.fulicenter.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -10,10 +11,12 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import day1010.fulicenter.FuLiCenterApplication;
+import day1010.fulicenter.I;
 import day1010.fulicenter.fragment.CategoryFragment;
 import day1010.fulicenter.R;
 import day1010.fulicenter.fragment.BoutiqueFragment;
 import day1010.fulicenter.fragment.NewGoodsFragment;
+import day1010.fulicenter.fragment.PresonalCenterFragment;
 import day1010.fulicenter.utils.L;
 import day1010.fulicenter.utils.MFGT;
 
@@ -39,6 +42,7 @@ public class MainActivity extends BaseActivity {
     NewGoodsFragment newGoodsFragment;
     BoutiqueFragment boutiqueFragment;
     CategoryFragment categoryFragment;
+    PresonalCenterFragment presonalCenterFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,9 +58,11 @@ public class MainActivity extends BaseActivity {
         newGoodsFragment = new NewGoodsFragment();
         boutiqueFragment = new BoutiqueFragment();
         categoryFragment = new CategoryFragment();
+        presonalCenterFragment = new PresonalCenterFragment();
         mFragments[0] = newGoodsFragment;
         mFragments[1] = boutiqueFragment;
         mFragments[2] = categoryFragment;
+        mFragments[4] = presonalCenterFragment;
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment,newGoodsFragment)
@@ -137,5 +143,19 @@ public class MainActivity extends BaseActivity {
 
     public void onBackPressed() {
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setFragment();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == I.REQUEST_CODE_LOGIN && FuLiCenterApplication.getUser() != null){
+            index = 4;
+        }
     }
 }
