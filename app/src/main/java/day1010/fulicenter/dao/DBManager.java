@@ -29,7 +29,7 @@ public class DBManager {
     public synchronized boolean saveUser(User user){
         SQLiteDatabase db = mHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(UserDao.TABLE_USER_NAME,user.getMuserName());
+        values.put(UserDao.TABLE_COLUMN_NAME,user.getMuserName());
         values.put(UserDao.TABLE_COLUMN_NICK,user.getMuserNick());
         values.put(UserDao.TABLE_COLUMN_AVATAR_ID,user.getMavatarId());
         values.put(UserDao.TABLE_COLUMN_AVATAR_TYPE,user.getMavatarType());

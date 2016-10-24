@@ -9,11 +9,16 @@ import android.widget.EditText;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import day1010.fulicenter.FuLiCenterApplication;
 import day1010.fulicenter.I;
 import day1010.fulicenter.R;
 import day1010.fulicenter.bean.Result;
+import day1010.fulicenter.bean.User;
+import day1010.fulicenter.dao.SharePreferenceUtils;
+import day1010.fulicenter.dao.UserDao;
 import day1010.fulicenter.net.NetDao;
 import day1010.fulicenter.utils.CommonUtils;
+import day1010.fulicenter.utils.L;
 import day1010.fulicenter.utils.MFGT;
 import day1010.fulicenter.utils.OkHttpUtils;
 import day1010.fulicenter.utils.ResultUtils;
@@ -90,19 +95,29 @@ public class LoginActivity extends BaseActivity {
         NetDao.login(context, Username, Password, new OkHttpUtils.OnCompleteListener<String>() {
             @Override
             public void onSuccess(String s) {
-                Result result = ResultUtils.getResultFromJson(s, I.User.class);
+                Result result = ResultUtils.getResultFromJson(s, User.class);
                 if (result == null){
-                    CommonUtils.showShortToast(R.string.login_fail);
+                   // CommonUtils.showShortToast(R.string.login_fail);
                 }else{
                     if (result.isRetMsg()){
+                        User user = (User) result.getRetData();
                         CommonUtils.showShortToast(R.string.login_success);
-                        MFGT.finish(context);
+                        UserDao dao = new UserDao(context);
+                        boolean isSuccess = dao.saveUser(user);
+                        if (isSuccess){
+                            SharePreferenceUtils.getInstance(context).saveUser(user.getMuserName());
+                            FuLiCenterApplication.setUser(user);
+                            MFGT.finish(context);
+                        }else{
+                            CommonUtils.showLongToast(R.string.user_database_error);
+                        }
                     }else{
                         if (result.getRetCode() == I.MSG_LOGIN_UNKNOW_USER){
                             CommonUtils.showLongToast(R.string.login_fail_unknow_user);
                         }else if(result.getRetCode() == I.MSG_LOGIN_ERROR_PASSWORD){
                             CommonUtils.showLongToast(R.string.login_fail_error_password);
                         }else{
+                            L.e("到底哪错的");
                             CommonUtils.showLongToast(R.string.login_fail);
                         }
                     }
