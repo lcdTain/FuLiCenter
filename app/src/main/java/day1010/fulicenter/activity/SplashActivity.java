@@ -41,7 +41,7 @@ public class SplashActivity extends AppCompatActivity {
                 L.e(TAG,"fulicenter,username="+username);
                 if (user == null && username != null){
                     UserDao dao = new UserDao(context);
-                    user = dao.getUser("a9527010");
+                    user = dao.getUser(username);
                     L.e(TAG,"database,user="+user);
                     if (user != null){
                         FuLiCenterApplication.setUser(user);
