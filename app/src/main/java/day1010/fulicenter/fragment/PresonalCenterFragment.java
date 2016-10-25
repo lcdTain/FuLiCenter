@@ -15,6 +15,7 @@ import butterknife.OnClick;
 import day1010.fulicenter.FuLiCenterApplication;
 import day1010.fulicenter.R;
 import day1010.fulicenter.activity.MainActivity;
+import day1010.fulicenter.activity.PersonalInformationActivity;
 import day1010.fulicenter.bean.User;
 import day1010.fulicenter.utils.ImageLoader;
 import day1010.fulicenter.utils.L;
@@ -32,6 +33,8 @@ public class PresonalCenterFragment extends BaseFragment {
     TextView tvUsername;
 
     MainActivity context;
+    User user = null;
+
 
 
     public PresonalCenterFragment() {
@@ -57,14 +60,11 @@ public class PresonalCenterFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        User user = FuLiCenterApplication.getUser();
-        if (user == null){
-            MFGT.gotoLoginActivity(context);
-        }else{
+        user = FuLiCenterApplication.getUser();
+        if (user != null){
             ImageLoader.setAvatar(ImageLoader.getAvatarUrl(user),context,ivAvatar);
             tvUsername.setText(user.getMuserNick());
         }
-
     }
 
     @Override
@@ -78,7 +78,14 @@ public class PresonalCenterFragment extends BaseFragment {
         ButterKnife.unbind(this);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
+
     @OnClick(R.id.tvSettings)
     public void onClick() {
+        MFGT.startActivity(context, PersonalInformationActivity.class);
     }
 }
