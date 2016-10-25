@@ -60,6 +60,7 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.ivBack)
     public void onClick() {
+        MFGT.finish(context);
     }
 
     @OnClick({R.id.btn_login, R.id.btn_register})
@@ -97,7 +98,7 @@ public class LoginActivity extends BaseActivity {
             public void onSuccess(String s) {
                 Result result = ResultUtils.getResultFromJson(s, User.class);
                 if (result == null){
-                   // CommonUtils.showShortToast(R.string.login_fail);
+                   CommonUtils.showShortToast(R.string.login_fail);
                 }else{
                     if (result.isRetMsg()){
                         User user = (User) result.getRetData();
@@ -117,7 +118,6 @@ public class LoginActivity extends BaseActivity {
                         }else if(result.getRetCode() == I.MSG_LOGIN_ERROR_PASSWORD){
                             CommonUtils.showLongToast(R.string.login_fail_error_password);
                         }else{
-                            L.e("到底哪错的");
                             CommonUtils.showLongToast(R.string.login_fail);
                         }
                     }
