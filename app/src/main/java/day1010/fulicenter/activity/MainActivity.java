@@ -1,12 +1,17 @@
 package day1010.fulicenter.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.TextView;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -35,7 +40,7 @@ public class MainActivity extends BaseActivity {
     @Bind(R.id.rb_personal)
     RadioButton rbPersonal;
 
-    Fragment [] mFragments;
+    Fragment[] mFragments;
     int index;
     int currentIndex;
     RadioButton[] rbs;
@@ -43,6 +48,11 @@ public class MainActivity extends BaseActivity {
     BoutiqueFragment boutiqueFragment;
     CategoryFragment categoryFragment;
     PresonalCenterFragment presonalCenterFragment;
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,9 +75,9 @@ public class MainActivity extends BaseActivity {
         mFragments[4] = presonalCenterFragment;
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.fragment,newGoodsFragment)
-                .add(R.id.fragment,boutiqueFragment)
-                .add(R.id.fragment,categoryFragment)
+                .add(R.id.fragment, newGoodsFragment)
+                .add(R.id.fragment, boutiqueFragment)
+                .add(R.id.fragment, categoryFragment)
                 .hide(boutiqueFragment)
                 .hide(categoryFragment)
                 .show(newGoodsFragment)
@@ -99,9 +109,9 @@ public class MainActivity extends BaseActivity {
                 index = 3;
                 break;
             case R.id.rb_personal:
-                if (FuLiCenterApplication.getUser()==null){
+                if (FuLiCenterApplication.getUser() == null) {
                     MFGT.gotoLoginActivity(this);
-                }else{
+                } else {
                     index = 4;
                 }
                 break;
@@ -110,11 +120,11 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setFragment() {
-        if (index != currentIndex){
+        if (index != currentIndex) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.hide(mFragments[currentIndex]);
-            if (!mFragments[index].isAdded()){
-             ft.add(R.id.fragment,mFragments[index]);
+            if (!mFragments[index].isAdded()) {
+                ft.add(R.id.fragment, mFragments[index]);
             }
             ft.show(mFragments[index]).commit();
         }
@@ -131,8 +141,9 @@ public class MainActivity extends BaseActivity {
             }
         }
     }
+
     @Override
-    protected void initData(){
+    protected void initData() {
         initFragment();
     }
 
@@ -148,14 +159,18 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if (index == 4 && FuLiCenterApplication.getUser() == null){
+            index = 0;
+        }
         setFragment();
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == I.REQUEST_CODE_LOGIN && FuLiCenterApplication.getUser() != null){
+        if (requestCode == I.REQUEST_CODE_LOGIN && FuLiCenterApplication.getUser() != null) {
             index = 4;
         }
     }
+
 }
