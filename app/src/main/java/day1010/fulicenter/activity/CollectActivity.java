@@ -11,18 +11,18 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import day1010.fulicenter.Adapter.CollectsAdapter;
-
 import day1010.fulicenter.FuLiCenterApplication;
 import day1010.fulicenter.I;
 import day1010.fulicenter.R;
 import day1010.fulicenter.bean.CollectBean;
-
 import day1010.fulicenter.bean.User;
 import day1010.fulicenter.net.NetDao;
 import day1010.fulicenter.utils.CommonUtils;
 import day1010.fulicenter.utils.ConvertUtils;
 import day1010.fulicenter.utils.L;
+import day1010.fulicenter.utils.MFGT;
 import day1010.fulicenter.utils.OkHttpUtils;
 import day1010.fulicenter.view.SpaceItemDecoration;
 
@@ -48,7 +48,7 @@ public class CollectActivity extends BaseActivity {
         ButterKnife.bind(this);
         context = this;
         mList = new ArrayList<>();
-        mAdapter = new CollectsAdapter(context,mList);
+        mAdapter = new CollectsAdapter(context, mList);
         super.onCreate(savedInstanceState);
     }
 
@@ -126,7 +126,7 @@ public class CollectActivity extends BaseActivity {
     @Override
     protected void initData() {
         user = FuLiCenterApplication.getUser();
-        if (user == null){
+        if (user == null) {
             finish();
         }
         downloadCollects(I.ACTION_DOWNLOAD);
@@ -148,4 +148,8 @@ public class CollectActivity extends BaseActivity {
         rv.addItemDecoration(new SpaceItemDecoration(12));
     }
 
+    @OnClick(R.id.ivBack)
+    public void onClick() {
+        MFGT.finish(context);
+    }
 }
