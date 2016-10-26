@@ -152,4 +152,10 @@ public class CollectActivity extends BaseActivity {
     public void onClick() {
         MFGT.finish(context);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initData();
+    }
 }
