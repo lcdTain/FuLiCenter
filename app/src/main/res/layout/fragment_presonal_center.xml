@@ -65,6 +65,7 @@
         android:orientation="horizontal"
         android:background="#f15805">
         <RelativeLayout
+            android:id="@+id/rlCollect"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content">
@@ -73,7 +74,7 @@
                 android:id="@+id/tvGoodsColumn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2"
+                android:text="0"
                 android:textSize="15sp"
                 android:textColor="#fff"
                 android:gravity="center"/>
