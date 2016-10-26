@@ -17,12 +17,17 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import day1010.fulicenter.FuLiCenterApplication;
 import day1010.fulicenter.I;
 import day1010.fulicenter.R;
 import day1010.fulicenter.bean.CollectBean;
+import day1010.fulicenter.bean.MessageBean;
 import day1010.fulicenter.bean.NewGoodsBean;
+import day1010.fulicenter.net.NetDao;
+import day1010.fulicenter.utils.CommonUtils;
 import day1010.fulicenter.utils.ImageLoader;
 import day1010.fulicenter.utils.MFGT;
+import day1010.fulicenter.utils.OkHttpUtils;
 import day1010.fulicenter.view.FooterViewHolder;
 
 /**
@@ -83,7 +88,7 @@ public class CollectsAdapter extends RecyclerView.Adapter {
             CollectBean collectBean = mList.get(position);
             goodsViewHolder.tvGoodsName.setText(collectBean.getGoodsName());
             ImageLoader.downloadImg(context, goodsViewHolder.ivGoodsPicture, collectBean.getGoodsThumb());
-            goodsViewHolder.layoutGoods.setTag(collectBean.getGoodsId());
+            goodsViewHolder.layoutGoods.setTag(collectBean);
         }
 
     }
@@ -135,11 +140,30 @@ public class CollectsAdapter extends RecyclerView.Adapter {
 
         @OnClick(R.id.layout_goods)
         public void onGoodsItemClick() {
-            int goodsId = (int) layoutGoods.getTag();
-            MFGT.gotoGoodsDetailsActivity(context,goodsId);
-//            context.startActivity(new Intent(context, GoodsDetailActivity.class)
-//                    .putExtra(I.GoodsDetails.KEY_GOODS_ID,goodsId));
+            CollectBean goodsId = (CollectBean) layoutGoods.getTag();
+            MFGT.gotoGoodsDetailsActivity(context,goodsId.getGoodsId());
+        }
+        @OnClick(R.id.ivDelete)
+        public void deleteCollect(){
+            final CollectBean goodsId = (CollectBean) layoutGoods.getTag();
+            String username = FuLiCenterApplication.getUser().getMuserName();
+            NetDao.deleteCollect(context, username, goodsId.getGoodsId(), new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                @Override
+                public void onSuccess(MessageBean result) {
+                    if (result != null && result.isSuccess()){
+                        mList.remove(goodsId);
+                        notifyDataSetChanged();
+                        CommonUtils.showLongToast(context.getResources().getString(R.string.delete_collect_success));
+                    }else{
+                        CommonUtils.showLongToast(result != null ? result.getMsg() : context.getResources().getString(R.string.delete_collect_fail));
+                    }
+                }
 
+                @Override
+                public void onError(String error) {
+                    CommonUtils.showLongToast(context.getResources().getString(R.string.delete_collect_fail));
+                }
+            });
         }
     }
 }
