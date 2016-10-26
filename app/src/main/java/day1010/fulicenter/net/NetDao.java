@@ -9,6 +9,7 @@ import day1010.fulicenter.bean.BoutiqueBean;
 import day1010.fulicenter.bean.CategoryChildBean;
 import day1010.fulicenter.bean.CategoryGroupBean;
 import day1010.fulicenter.bean.GoodsDetailsBean;
+import day1010.fulicenter.bean.MessageBean;
 import day1010.fulicenter.bean.NewGoodsBean;
 import day1010.fulicenter.bean.Result;
 import day1010.fulicenter.utils.MD5;
@@ -109,4 +110,14 @@ public class NetDao {
                 .execute(listener);
 
     }
+
+    public static void syncCollectCount(Context context, String username, OkHttpUtils.OnCompleteListener<MessageBean> listener){
+        OkHttpUtils<MessageBean> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_FIND_COLLECT_COUNT)
+                .addParam(I.Collect.USER_NAME,username)
+                .targetClass(MessageBean.class)
+                .execute(listener);
+
+    }
+
 }
