@@ -21,7 +21,6 @@ import day1010.fulicenter.bean.Result;
 import day1010.fulicenter.bean.User;
 import day1010.fulicenter.dao.UserDao;
 import day1010.fulicenter.net.NetDao;
-import day1010.fulicenter.utils.CommonUtils;
 import day1010.fulicenter.utils.ImageLoader;
 import day1010.fulicenter.utils.MFGT;
 import day1010.fulicenter.utils.OkHttpUtils;
@@ -97,10 +96,6 @@ public class PresonalCenterFragment extends BaseFragment {
         }
     }
 
-    @OnClick(R.id.tvSettings)
-    public void onClick() {
-        MFGT.startActivity(context, PersonalInformationActivity.class);
-    }
 
     private void syncUserInfo() {
         NetDao.syncUserInfo(context, user.getMuserName(), new OkHttpUtils.OnCompleteListener<String>() {
@@ -135,7 +130,7 @@ public class PresonalCenterFragment extends BaseFragment {
             public void onSuccess(MessageBean result) {
                 if (result != null && result.isSuccess()) {
                     tvGoodsColumn.setText(result.getMsg());
-                }else{
+                } else {
                     tvGoodsColumn.setText(String.valueOf(0));
                 }
             }
@@ -145,5 +140,18 @@ public class PresonalCenterFragment extends BaseFragment {
                 tvGoodsColumn.setText(String.valueOf(0));
             }
         });
+    }
+
+
+    @OnClick({R.id.tvSettings, R.id.rlCollect})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tvSettings:
+                MFGT.startActivity(context, PersonalInformationActivity.class);
+                break;
+            case R.id.rlCollect:
+                MFGT.gotoCollects(context);
+                break;
+        }
     }
 }
