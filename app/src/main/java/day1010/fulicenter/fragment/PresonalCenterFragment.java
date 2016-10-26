@@ -16,12 +16,13 @@ import day1010.fulicenter.FuLiCenterApplication;
 import day1010.fulicenter.R;
 import day1010.fulicenter.activity.MainActivity;
 import day1010.fulicenter.activity.PersonalInformationActivity;
+import day1010.fulicenter.bean.MessageBean;
 import day1010.fulicenter.bean.Result;
 import day1010.fulicenter.bean.User;
 import day1010.fulicenter.dao.UserDao;
 import day1010.fulicenter.net.NetDao;
+import day1010.fulicenter.utils.CommonUtils;
 import day1010.fulicenter.utils.ImageLoader;
-import day1010.fulicenter.utils.L;
 import day1010.fulicenter.utils.MFGT;
 import day1010.fulicenter.utils.OkHttpUtils;
 import day1010.fulicenter.utils.ResultUtils;
@@ -39,7 +40,8 @@ public class PresonalCenterFragment extends BaseFragment {
 
     MainActivity context;
     User user = null;
-
+    @Bind(R.id.tvGoodsColumn)
+    TextView tvGoodsColumn;
 
 
     public PresonalCenterFragment() {
@@ -66,8 +68,8 @@ public class PresonalCenterFragment extends BaseFragment {
     @Override
     protected void initData() {
         user = FuLiCenterApplication.getUser();
-        if (user != null){
-            ImageLoader.setAvatar(ImageLoader.getAvatarUrl(user),context,ivAvatar);
+        if (user != null) {
+            ImageLoader.setAvatar(ImageLoader.getAvatarUrl(user), context, ivAvatar);
             tvUsername.setText(user.getMuserNick());
         }
     }
@@ -87,10 +89,11 @@ public class PresonalCenterFragment extends BaseFragment {
     public void onResume() {
         super.onResume();
         user = FuLiCenterApplication.getUser();
-        if (user != null){
-            ImageLoader.setAvatar(ImageLoader.getAvatarUrl(user),context,ivAvatar);
+        if (user != null) {
+            ImageLoader.setAvatar(ImageLoader.getAvatarUrl(user), context, ivAvatar);
             tvUsername.setText(user.getMuserNick());
             syncUserInfo();
+            syncCollectCount();
         }
     }
 
@@ -99,20 +102,20 @@ public class PresonalCenterFragment extends BaseFragment {
         MFGT.startActivity(context, PersonalInformationActivity.class);
     }
 
-    private void syncUserInfo(){
+    private void syncUserInfo() {
         NetDao.syncUserInfo(context, user.getMuserName(), new OkHttpUtils.OnCompleteListener<String>() {
             @Override
             public void onSuccess(String s) {
                 Result result = ResultUtils.getResultFromJson(s, User.class);
-                if (result != null){
+                if (result != null) {
                     User u = (User) result.getRetData();
-                    if (!user.equals(u)){
+                    if (!user.equals(u)) {
                         UserDao dao = new UserDao(context);
                         boolean isSuccess = dao.saveUser(u);
-                        if (isSuccess){
+                        if (isSuccess) {
                             FuLiCenterApplication.setUser(u);
                             user = u;
-                            ImageLoader.setAvatar(ImageLoader.getAvatarUrl(user),context,ivAvatar);
+                            ImageLoader.setAvatar(ImageLoader.getAvatarUrl(user), context, ivAvatar);
                             tvUsername.setText(user.getMuserNick());
                         }
                     }
@@ -122,6 +125,24 @@ public class PresonalCenterFragment extends BaseFragment {
             @Override
             public void onError(String error) {
 
+            }
+        });
+    }
+
+    private void syncCollectCount() {
+        NetDao.syncCollectCount(context, user.getMuserName(), new OkHttpUtils.OnCompleteListener<MessageBean>() {
+            @Override
+            public void onSuccess(MessageBean result) {
+                if (result != null && result.isSuccess()) {
+                    tvGoodsColumn.setText(result.getMsg());
+                }else{
+                    tvGoodsColumn.setText(String.valueOf(0));
+                }
+            }
+
+            @Override
+            public void onError(String error) {
+                tvGoodsColumn.setText(String.valueOf(0));
             }
         });
     }
