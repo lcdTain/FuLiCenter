@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    android:background="#f2e6e6">
+    android:background="#fff">
     <ImageView
         android:id="@+id/ivGroup_thumb"
         android:layout_width="80dp"
@@ -17,7 +17,7 @@
         android:text="彩妆"
         android:textSize="30sp"
         android:layout_marginLeft="40dp"
-        android:textColor="#ff00bb"
+        android:textColor="#000"
         android:layout_toRightOf="@id/ivGroup_thumb"/>
     <ImageView
         android:id="@+id/ivGroup_Expand"
