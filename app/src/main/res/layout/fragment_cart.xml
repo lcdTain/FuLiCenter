@@ -1,0 +1,71 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f3f3">
+
+<android.support.v4.widget.SwipeRefreshLayout
+android:id="@+id/sl"
+android:layout_width="match_parent"
+android:layout_height="wrap_content">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_refresh_title" />
+    <TextView
+        android:id="@+id/tvNothing"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="空空如也"
+       android:gravity="center"
+        android:textSize="30sp"
+        android:textColor="#0b16df"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</LinearLayout>
+</android.support.v4.widget.SwipeRefreshLayout>
+    <RelativeLayout
+        android:id="@+id/rlBuy"
+        android:background="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="70dp">
+
+        <Button
+            android:id="@+id/btn_buy"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:text="结算"
+            android:textSize="20sp"
+            android:textColor="#fff"
+            android:background="#fd3605" />
+
+        <TextView
+            android:id="@+id/tvSumPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="合计：￥0"
+            android:textColor="#d42f15"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_toLeftOf="@id/btn_buy" />
+        <TextView
+            android:id="@+id/tvJieSheng"
+            android:layout_below="@id/tvSumPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:text="节省：￥0"
+            android:textColor="#ab4c29"
+            android:textSize="17sp"
+            android:gravity="center"
+            android:layout_toLeftOf="@id/btn_buy"/>
+    </RelativeLayout>
+
+</RelativeLayout>
