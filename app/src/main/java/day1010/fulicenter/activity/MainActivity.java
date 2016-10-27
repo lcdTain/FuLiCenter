@@ -17,6 +17,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import day1010.fulicenter.FuLiCenterApplication;
 import day1010.fulicenter.I;
+import day1010.fulicenter.fragment.CartFragment;
 import day1010.fulicenter.fragment.CategoryFragment;
 import day1010.fulicenter.R;
 import day1010.fulicenter.fragment.BoutiqueFragment;
@@ -48,6 +49,7 @@ public class MainActivity extends BaseActivity {
     BoutiqueFragment boutiqueFragment;
     CategoryFragment categoryFragment;
     PresonalCenterFragment presonalCenterFragment;
+    CartFragment cartFragment;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -69,17 +71,20 @@ public class MainActivity extends BaseActivity {
         boutiqueFragment = new BoutiqueFragment();
         categoryFragment = new CategoryFragment();
         presonalCenterFragment = new PresonalCenterFragment();
+        cartFragment = new CartFragment();
         mFragments[0] = newGoodsFragment;
         mFragments[1] = boutiqueFragment;
         mFragments[2] = categoryFragment;
+        mFragments[3] = cartFragment;
         mFragments[4] = presonalCenterFragment;
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment, newGoodsFragment)
-                .add(R.id.fragment, boutiqueFragment)
-                .add(R.id.fragment, categoryFragment)
-                .hide(boutiqueFragment)
-                .hide(categoryFragment)
+//                .add(R.id.fragment, boutiqueFragment)
+//                .add(R.id.fragment, categoryFragment)
+//                .add(R.id.fragment,cartFragment)
+//                .hide(boutiqueFragment)
+//                .hide(categoryFragment)
                 .show(newGoodsFragment)
                 .commit();
     }
@@ -106,7 +111,11 @@ public class MainActivity extends BaseActivity {
                 index = 2;
                 break;
             case R.id.rb_cart:
-                index = 3;
+                if (FuLiCenterApplication.getUser() == null){
+                    MFGT.gotoLoginFromCart(this);
+                }else{
+                    index = 3;
+                }
                 break;
             case R.id.rb_personal:
                 if (FuLiCenterApplication.getUser() == null) {
@@ -168,8 +177,13 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == I.REQUEST_CODE_LOGIN && FuLiCenterApplication.getUser() != null) {
-            index = 4;
+        if (FuLiCenterApplication.getUser() != null) {
+            if (requestCode == I.REQUEST_CODE_LOGIN ){
+                index = 4;
+            }
+            if (requestCode == I.REQUEST_CODE_LOGIN_FROM_CART){
+                index = 3;
+            }
         }
     }
 
