@@ -6,6 +6,7 @@ import java.io.File;
 
 import day1010.fulicenter.I;
 import day1010.fulicenter.bean.BoutiqueBean;
+import day1010.fulicenter.bean.CartBean;
 import day1010.fulicenter.bean.CategoryChildBean;
 import day1010.fulicenter.bean.CategoryGroupBean;
 import day1010.fulicenter.bean.CollectBean;
@@ -149,6 +150,30 @@ public class NetDao {
         utils.setRequestUrl(I.REQUEST_ADD_COLLECT)
                 .addParam(I.Collect.USER_NAME,username)
                 .addParam(I.Collect.GOODS_ID,goodsId+"")
+                .targetClass(MessageBean.class)
+                .execute(listener);
+    }
+
+    public static void downloadCart(Context context,String username, OkHttpUtils.OnCompleteListener<String> listener){
+        OkHttpUtils<String> utils = new OkHttpUtils(context);
+        utils.setRequestUrl(I.REQUEST_FIND_CARTS)
+                .addParam(I.Cart.USER_NAME,username)
+                .targetClass(String.class)
+                .execute(listener);
+    }
+    public static void updateCart(Context context, int cartId, int count, OkHttpUtils.OnCompleteListener<MessageBean> listener){
+        OkHttpUtils<MessageBean> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_UPDATE_CART)
+                .addParam(I.Cart.ID,cartId+"")
+                .addParam(I.Cart.COUNT,count+"")
+                .addParam(I.Cart.IS_CHECKED,I.CART_CHECKED_DEFAULT+"")
+                .targetClass(MessageBean.class)
+                .execute(listener);
+    }
+    public static void delCart(Context context,int cartId,OkHttpUtils.OnCompleteListener<MessageBean> listener){
+        OkHttpUtils<MessageBean> utils = new OkHttpUtils<>(context);
+        utils.setRequestUrl(I.REQUEST_DELETE_CART)
+                .addParam(I.Cart.ID,cartId+"")
                 .targetClass(MessageBean.class)
                 .execute(listener);
     }
