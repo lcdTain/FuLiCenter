@@ -24,6 +24,7 @@ import day1010.fulicenter.bean.GoodsDetailsBean;
 import day1010.fulicenter.bean.MessageBean;
 import day1010.fulicenter.net.NetDao;
 import day1010.fulicenter.utils.ImageLoader;
+import day1010.fulicenter.utils.MFGT;
 import day1010.fulicenter.utils.OkHttpUtils;
 
 /**
@@ -108,10 +109,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             ButterKnife.bind(this, view);
         }
 
-        @OnClick(R.id.rlCartItem)
+        @OnClick({R.id.ivGoodsPicture,R.id.tvUsername,R.id.tvGoodPrince})
         public void onCartClick() {
-            CartBean bean = (CartBean) rlCartItem.getTag();
-            // MFGT.gotoBoutiqueChildActivity(context,bean);
+            final int position = (int) ivAdd.getTag();
+            CartBean cart = mList.get(position);
+            MFGT.gotoGoodsDetailsActivity(context,cart.getGoodsId());
         }
         @OnClick(R.id.ivAdd)
         public void addCart(){
