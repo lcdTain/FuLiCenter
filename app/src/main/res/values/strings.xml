@@ -35,4 +35,9 @@
     <string name="update_user_avatar_success">更新头像成功</string>
     <string name="delete_collect_fail">删除失败</string>
     <string name="delete_collect_success">删除成功</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="add_goods_cart_success">添加购物车成功</string>
+    <string name="add_goods_cart_fail">添加购物车失败</string>
 </resources>

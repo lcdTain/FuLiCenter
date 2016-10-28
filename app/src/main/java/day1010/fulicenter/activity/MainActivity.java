@@ -34,8 +34,6 @@ public class MainActivity extends BaseActivity {
     RadioButton rbBoutique;
     @Bind(R.id.rb_category)
     RadioButton rbCategory;
-    @Bind(R.id.tvCartCount)
-    TextView tvCartCount;
     @Bind(R.id.rb_cart)
     RadioButton rbCart;
     @Bind(R.id.rb_personal)

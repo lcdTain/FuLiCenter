@@ -237,4 +237,28 @@ public class GoodsDetailActivity extends BaseActivity {
 // 启动分享GUI
             oks.show(this);
         }
+    @OnClick(R.id.ivCartSelected)
+    public void addGoodsCart(){
+        User user = FuLiCenterApplication.getUser();
+        if (user != null){
+            NetDao.addGoodsCart(context, goodsID, user.getMuserName(), new OkHttpUtils.OnCompleteListener<MessageBean>() {
+                @Override
+                public void onSuccess(MessageBean result) {
+                    if (result != null && result.isSuccess()){
+                        CommonUtils.showLongToast(R.string.add_goods_cart_success);
+                    }else{
+                        CommonUtils.showLongToast(R.string.add_goods_cart_fail);
+                    }
+                }
+
+                @Override
+                public void onError(String error) {
+                    CommonUtils.showLongToast(R.string.add_goods_cart_fail);
+
+                }
+            });
+        }else{
+            MFGT.gotoLoginActivity(context);
+        }
+    }
 }

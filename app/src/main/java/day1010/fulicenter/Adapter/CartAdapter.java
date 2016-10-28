@@ -58,6 +58,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         holder.tvUsername.setText(goods.getGoodsName());
         holder.tvGoodPrince.setText(goods.getCurrencyPrice());
         holder.checkBox.setChecked(false);
+        holder.tvGoodsCount.setText(cartBean.getCount()+"");
         holder.rlCartItem.setTag(cartBean);
         holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
