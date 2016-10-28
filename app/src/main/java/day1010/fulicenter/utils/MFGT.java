@@ -15,6 +15,7 @@ import day1010.fulicenter.activity.GoodsDetailActivity;
 import day1010.fulicenter.activity.LoginActivity;
 import day1010.fulicenter.activity.MainActivity;
 import day1010.fulicenter.R;
+import day1010.fulicenter.activity.OrderActivity;
 import day1010.fulicenter.activity.PersonalInformationActivity;
 import day1010.fulicenter.activity.RegisterActivity;
 import day1010.fulicenter.bean.BoutiqueBean;
@@ -90,5 +91,9 @@ public class MFGT {
         Intent intent = new Intent();
         intent.setClass(context, LoginActivity.class);
         startActivityForResult(context, intent, I.REQUEST_CODE_LOGIN_FROM_CART);
+    }
+    public static void gotoBuy(Activity context,String cartIds){
+        Intent intent = new Intent(context, OrderActivity.class).putExtra(I.Cart.ID,cartIds);
+        startActivity(context,intent);
     }
 }
