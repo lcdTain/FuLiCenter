@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\release\\anim\\cmbkb_push_bottom_in.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiCenter.lib\\pingpp\\unspecified\\res\\anim\\cmbkb_push_bottom_in.xml"
+    },
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\release\\anim\\dialog_exit.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\res\\anim\\dialog_exit.xml"
+    },
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\release\\anim\\dialog_enter.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\res\\anim\\dialog_enter.xml"
+    },
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\release\\anim\\cmbkb_push_bottom_out.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiCenter.lib\\pingpp\\unspecified\\res\\anim\\cmbkb_push_bottom_out.xml"
+    }
+]

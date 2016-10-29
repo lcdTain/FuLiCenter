@@ -1,0 +1,30 @@
+[
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\xml\\cmbkb_number_with_dot.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiCenter.lib\\pingpp\\unspecified\\res\\xml\\cmbkb_number_with_dot.xml"
+    },
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\xml\\cmbkb_number_with_x.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiCenter.lib\\pingpp\\unspecified\\res\\xml\\cmbkb_number_with_x.xml"
+    },
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\xml\\cmbkb_number.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiCenter.lib\\pingpp\\unspecified\\res\\xml\\cmbkb_number.xml"
+    },
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\xml\\cmbkb_number_with_change.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiCenter.lib\\pingpp\\unspecified\\res\\xml\\cmbkb_number_with_change.xml"
+    },
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\xml\\cmbkb_symbols.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiCenter.lib\\pingpp\\unspecified\\res\\xml\\cmbkb_symbols.xml"
+    },
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\xml\\cmbkb_qwerty.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiCenter.lib\\pingpp\\unspecified\\res\\xml\\cmbkb_qwerty.xml"
+    },
+    {
+        "merged": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\res\\merged\\androidTest\\debug\\xml\\cmbkb_number_symbols.xml",
+        "source": "E:\\everyday\\FuLiCenter\\lib\\pingpp_one\\build\\intermediates\\exploded-aar\\FuLiCenter.lib\\pingpp\\unspecified\\res\\xml\\cmbkb_number_symbols.xml"
+    }
+]
